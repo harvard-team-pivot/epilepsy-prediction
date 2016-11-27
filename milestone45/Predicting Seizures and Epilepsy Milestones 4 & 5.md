@@ -15,6 +15,14 @@ Propose methodologies and ideas to be implemented, tested and interpreted for yo
 Provide a roughly 1 page
 outline of what approaches, models, etc. you would like to use for the final project results.
 
+Future models will not be valid with linear regression due to categorical nature of the data (even though it's encoded with values)
+
+We may need to add more features from the additional later.
+
+Time sense
+
+Optimizing the model with cross-validation
+
 Data Set 1 Thall & Vail
 
 This dataset gives a two-week seizure counts for 59 epileptics. The number of seizures was recorded for a baseline period of 8 weeks, and then patients were randomly assigned to a treatment group or a control group. Counts were then recorded for four successive two-week periods. The subject's age is the only covariate.
