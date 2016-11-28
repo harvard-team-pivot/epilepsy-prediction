@@ -15,24 +15,35 @@ After our initial review, we identified some variables which allowed us to categ
 #### Milestone 4 - Baselines
 
 Decide on the performance metric to evaluate prediction.
+
 • Feature extraction: Extract a set of basic features from past data
+
 • Implement the following baseline techniques:
-o Linear regression: Train a linear regression model on features extracted from seizure data.
-o Logistic regression: Using logistic regression to predict the occurrence of subsequent seizures following the first occurrence.
-o Linear discriminant analysis: Using LDA to parse the textual data and categorize factors effecting seizure occurrence into certain groups and with demographics.
+
+    o Linear regression: Train a linear regression model on features extracted from seizure data.
+
+    o Logistic regression: Using logistic regression to predict the occurrence of subsequent seizures following the first occurrence.
+
+    o Linear discriminant analysis: Using LDA to parse the textual data and categorize factors effecting seizure occurrence into certain groups and with demographics.
 
 Kela Notes
 Great job!
 It looks like you are on the right track. For the project, remember that we will likely not be able to identify every factor associated with seizure occurrence but we are looking to gain insight and build a story about the insight gained from your models.
 As you move towards completing the project, here are some things to keep in mind, be sure to follow the general guidelines in terms of model building:
 
-- Data Exploration			
-- Handling Missingness				
-- Model Choice			
-- Regularization/Variable Selection		
-- Accuracy			
+- Data Exploration
+
+- Handling Missingness
+
+- Model Choice
+
+- Regularization/Variable Selection
+
+- Accuracy
+
 - Classification (if possible)
-- Report/Explain Approach			
+
+- Report/Explain Approach
 
 This is a loose scaffold to serve as a guide, it's possible that you will not have all of these parts. Let me know if you have more questions, and again, nice work!
 
@@ -45,7 +56,9 @@ outline of what approaches, models, etc. you would like to use for the final pr
 
 KNN to fill blanks/none/NA
 
-Future models will not be valid with linear regression due to categorical nature of the data (even though it's encoded with values)
+refactoring functions
+
+Future models will not be valid with linear regression due to categorical nature of the data (even though it's encoded with values)		
 
 We may need to add more features from the additional later.
 
@@ -62,7 +75,7 @@ This dataset gives a two-week seizure counts for 59 epileptics. The number of se
 
 The National Child Development Study (NCDS) originated in the Perinatal Mortality Survey, which examined social and obstetric factors associated with still birth and infant mortality among over 17,000 babies born in Britain in one week in March 1958.  The study has broadened in scope to chart many aspects of the health, educational, and social development of cohort members as they passed through childhood and adolescence. We used date collected during the first three sweeps (1965 at age 7, 1969 at age 11, 1974 at age 16) in addition to the birth data.
 
-Surviving members of this birth cohort have been surveyed on five more occasions in order to monitor their changing health, education, social and economic circumstances.  We have excluded these datasets at this time in order to establish our baselines models.
+Surviving members of this birth cohort have been surveyed on five more occasions in order to monitor their changing health, education, social and economic circumstances.  We initially excluded these datasets at this time in order to establish our baselines models.
 
 
 #### Sources
