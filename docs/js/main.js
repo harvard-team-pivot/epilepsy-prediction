@@ -21,6 +21,8 @@ $(function() {
         });
     });
 
+    $('#body').load('components/01-overview.html', function() {});
+
     $('#footer').load('components/footer.html', function() {});
 
 

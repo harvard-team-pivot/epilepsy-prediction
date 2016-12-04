@@ -192,8 +192,8 @@ header {
 }
 
 .header-image {
-    padding-top: 300px;
-    padding-bottom: 300px;
+    padding-top: 342px;
+    padding-bottom: 342px;
     background-color: transparent;
     position: relative;
     background-image: url(../img/nerve-cells-brain.jpg);
@@ -202,4 +202,11 @@ header {
     background-size: cover;
     z-index: 1;
     /*box-sizing: border-box;*/
+}
+
+.footer-row{
+    padding-top: 20px;
+    font-size: 8pt;
+    font-family: "Open Sans", sans-serif;
+    font-weight: normal;
 }
