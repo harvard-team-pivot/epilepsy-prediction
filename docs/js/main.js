@@ -3,7 +3,11 @@
 // Load templates
 $(function() {
 
-    $('#header').load('components/header.html', function() {
+    // Timestamp to prevent cached templates
+    var now = new Date();
+    var ticks = now.getTime();
+
+    $('#header').load('components/header.html?'+ticks, function() {
         $('#nav').affix({
             offset: {
                 top: $('header').height()
@@ -13,7 +17,7 @@ $(function() {
 
     });
 
-    $('#sidebar').load('components/sidebar.html', function() {
+    $('#sidebar').load('components/sidebar.html?'+ticks, function() {
         $('#sidebar').affix({
             offset: {
                 top: $('header').height()
@@ -21,9 +25,9 @@ $(function() {
         });
     });
 
-    $('#body').load('components/01-overview.html', function() {});
+    $('#body').load('components/01-overview.html?'+ticks, function() {});
 
-    $('#footer').load('components/footer.html', function() {});
+    $('#footer').load('components/footer.html?'+ticks, function() {});
 
 
 });
