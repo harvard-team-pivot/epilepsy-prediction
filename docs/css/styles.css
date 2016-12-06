@@ -21,14 +21,14 @@
 
 #sidebar.affix {
     position: fixed;
-    top: 52px;
+    top: 80px;
 }
 
 
 
 .nav-wrapper
 {
-    min-height:52px;
+    min-height:80px;
 }
 
 
@@ -202,21 +202,30 @@ header {
     /*height:280px;*/
 }
 
-.header-image {
-    padding-top: 342px;
-    padding-bottom: 342px;
-    background-color: transparent;
-    position: relative;
-    background-image: url(../img/nerve-cells-brain.png);
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    z-index: 1;
-    /*box-sizing: border-box;*/
-}
+/*.header-image {*/
+    /*padding-top: 342px;*/
+    /*padding-bottom: 342px;*/
+    /*background-color: transparent;*/
+    /*position: relative;*/
+    /*background-image: url(../img/nerve-cells-brain.png);*/
+    /*background-position: center;*/
+    /*background-repeat: no-repeat;*/
+    /*background-size: cover;*/
+    /*z-index: 1;*/
+    /*!*box-sizing: border-box;*!*/
+/*}*/
 
+.navbar-title{
+    border-color: #0c1931;
+    background-color: #0c1931;
+    height: 78px;
+}
 .masthead{
     background-color: #0c1931;
+}
+.main-title-container{
+    padding-left: 0px;
+    padding-right: 0px;
 }
 .main-title{
     background-color: #0c1931;
@@ -225,6 +234,8 @@ header {
     font-size: 4em;
     color: #ffffff;
     text-align: center;
+    margin-top: 0px;
+    margin-bottom: 0px;
 }
 
 .header-vis-container{
