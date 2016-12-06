@@ -47,6 +47,14 @@ body,html{
 
 .navbar {
     border-radius: 0px;
+    background-color: #1a86b0;
+    color: #ffffff;
+}
+
+.navbar-inverse .navbar-nav li a {
+    color: #ffffff;
+    font-size: 10pt;
+    font-family: "Open Sans", sans-serif;
 }
 
 nav.sidebar, .main{
@@ -199,12 +207,32 @@ header {
     padding-bottom: 342px;
     background-color: transparent;
     position: relative;
-    background-image: url(../img/nerve-cells-brain.svg);
+    background-image: url(../img/nerve-cells-brain.png);
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
     z-index: 1;
     /*box-sizing: border-box;*/
+}
+
+.masthead{
+    background-color: #0c1931;
+}
+.main-title{
+    background-color: #0c1931;
+}
+.main-title h1 {
+    font-size: 4em;
+    color: #ffffff;
+    text-align: center;
+}
+
+.header-vis-container{
+    height: 500px;
+    background-color: #0c1931;
+}
+.header-vis {
+    height: 500px;
 }
 
 #body{
