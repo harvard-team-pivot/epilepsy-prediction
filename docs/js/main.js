@@ -45,7 +45,7 @@ var sidebar_items = [
     ]
 
 function resetpagescroll(){
-    $('body').scrollTop(620);
+    $('body').scrollTop(500);
 }
 function openpage(id){
 
