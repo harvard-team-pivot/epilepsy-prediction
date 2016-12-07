@@ -1,3 +1,1 @@
-TEST
-
-[Link Test](https://github.com/harvard-team-pivot/epilepsy-prediction/blob/master/README.md)
+[Final Project Site Link](https://harvard-team-pivot.github.io/epilepsy-prediction/)
