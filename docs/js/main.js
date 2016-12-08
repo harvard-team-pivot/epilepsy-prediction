@@ -37,11 +37,17 @@ $(function() {
 
 var current_page_index = 0;
 var sidebar_items = [
-    {"id":"01","page":"01-overview.html"}
-    ,{"id":"05","page":"05-preface.html"}
-    ,{"id":"10","page":"10-data.html"}
-    ,{"id":"20","page":"20-explore.html"}
-    ,{"id":"100","page":"100-references.html"}
+    {"id":"01","page":"components/01-overview.html"}
+    ,{"id":"05","page":"components/05-preface.html"}
+    ,{"id":"10","page":"components/10-data.html"}
+    ,{"id":"20","page":"components/20-explore.html"}
+    ,{"id":"21","page":"ipynb/20_exploratory_data_analysis_01.html"}
+    ,{"id":"22","page":"ipynb/20_exploratory_data_analysis_02.html"}
+    ,{"id":"23","page":"ipynb/20_exploratory_data_analysis_03.html"}
+    ,{"id":"30","page":"components/30-data-scrubbing.html"}
+    ,{"id":"40","page":"components/40-model.html"}
+    ,{"id":"50","page":"components/50-results.html"}
+    ,{"id":"100","page":"components/100-references.html"}
     ]
 
 function resetpagescroll(){
@@ -55,8 +61,25 @@ function openpage(id){
             resetpagescroll();
         });
     }else{
-        $('#body').load('components/'+item.page+'?'+ticks, function() {
+        $('#body').load(item.page+'?'+ticks, function() {
             resetpagescroll();
+
+            // Hide imports section for ipython files
+            if(item.page.match(/ipynb*/)){
+                console.log("ipynb file");
+                $('div.input').each(function(id) {
+                    // el = $(this).find('.cm-variable:first');
+                    // if (id == 0 || el.text() == 'hide_me') {
+                    //     $(this).hide();
+                    // }
+                    console.log(id);
+                    el = $(this).find('.c1:first');
+                    if(el && el.text() == '###Hide'){
+                        $(this).hide();
+                    }
+
+                });
+            }
         });
     }
 
