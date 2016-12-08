@@ -132,7 +132,7 @@ nav.sidebar, .main{
 
     /*colors dropdown box text */
     .navbar-inverse .navbar-nav .open .dropdown-menu>li>a {
-        color: #777;
+        color: #ffffff;
     }
 
     /*gives sidebar width/height*/
@@ -182,8 +182,8 @@ nav.sidebar, .main{
 }
 
 nav.sidebar .navbar-nav .open .dropdown-menu>li>a:hover, nav.sidebar .navbar-nav .open .dropdown-menu>li>a:focus {
-    color: #CCC;
-    background-color: transparent;
+    color: #ffffff;
+    background-color: #0c1931;
 }
 
 nav:hover .forAnimate{
@@ -196,6 +196,24 @@ section{
 /* Custom Styles for App */
 .navbar {
     margin-bottom: 0px;
+}
+
+.navbar-nav .nondropdown:hover{
+    background-color: #0c1931;
+    cursor: pointer;
+    cursor: hand;
+}
+
+.dropdown-menu > li:hover{
+    background-color: #0c1931;
+    cursor: pointer;
+    cursor: hand;
+}
+
+.dropdown-menu>.active>a, .dropdown-menu>.active>a:focus, .dropdown-menu>.active>a:hover {
+
+    background-color: #0c1931;
+
 }
 
 header {

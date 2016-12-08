@@ -26,6 +26,13 @@ $(function() {
                 top: $('header').height()
             }
         });
+
+        //
+        $('.dropdown .dropdown-menu').on({
+            "click":function(e){
+                e.stopPropagation();
+            }
+        });
     });
 
     //$('#body').load('components/01-overview.html?'+ticks, function() {});
@@ -53,7 +60,13 @@ var sidebar_items = [
 function resetpagescroll(){
     $('body').scrollTop(500);
 }
-function openpage(id){
+function openpage(li,id){
+    console.log(li)
+
+    $('.navbar-nav > li').removeClass("active");
+    $('.dropdown-menu > li').removeClass("active");
+
+    $(li).addClass("active");
 
     var item = _.find(sidebar_items, function(o) { return o.id == id; });
     if(!item){
