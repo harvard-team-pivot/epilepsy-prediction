@@ -127,8 +127,32 @@ $(function() {
     $('#previous_button').addClass("disabled");
 });
 
-// Init with overview page
-//openpage("01");
-$('#body').load('components/01-overview.html?'+ticks, function() {
-    //resetpagescroll();
-});
+
+// http://stackoverflow.com/questions/19491336/get-url-parameter-jquery-or-how-to-get-query-string-values-in-js
+function getUrlParameter(sParam) {
+    var sPageURL = decodeURIComponent(window.location.search.substring(1)),
+        sURLVariables = sPageURL.split('&'),
+        sParameterName,
+        i;
+
+    for (i = 0; i < sURLVariables.length; i++) {
+        sParameterName = sURLVariables[i].split('=');
+
+        if (sParameterName[0] === sParam) {
+            return sParameterName[1] === undefined ? true : sParameterName[1];
+        }
+    }
+}
+
+var id = getUrlParameter('id');
+console.log(id)
+// Init with overview page or the page with id
+if(id){
+    openpage(null,id)
+}else{
+    // By default open the overview page
+    $('#body').load('components/01-overview.html?'+ticks, function() {
+        //resetpagescroll();
+    });
+}
+

@@ -268,8 +268,16 @@ header {
     min-height: 700px;
 }
 
+.page-header{
+    font-size: 30px;
+    font-weight: 500;
+    line-height: 1.1;
+    padding-bottom: 9px;
+    margin: 20px 0 40px;
+}
 .footer-row{
-    padding-top: 20px;
+    margin-top: 20px;
+    margin-bottom: 20px;
     font-size: 8pt;
     font-family: "Open Sans", sans-serif;
     font-weight: normal;
