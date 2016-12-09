@@ -21,14 +21,14 @@
 
 #sidebar.affix {
     position: fixed;
-    top: 80px;
+    top: 52px;
 }
 
 
 
 .nav-wrapper
 {
-    min-height:80px;
+    min-height:52px;
 }
 
 
@@ -236,7 +236,7 @@ header {
 .navbar-title{
     border-color: #0c1931;
     background-color: #0c1931;
-    height: 78px;
+    height: 50px;
 }
 .masthead{
     background-color: #0c1931;
@@ -249,7 +249,7 @@ header {
     background-color: #0c1931;
 }
 .main-title h1 {
-    font-size: 4em;
+    font-size: 2.5em;
     color: #ffffff;
     text-align: center;
     margin-top: 0px;
@@ -265,7 +265,7 @@ header {
 }
 
 #body{
-    min-height: 700px;
+    min-height: 500px;
 }
 
 .page-header{

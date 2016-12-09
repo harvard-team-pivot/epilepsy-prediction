@@ -38,15 +38,23 @@
                         <li id="li_23" onclick="openpage(this,'23')"><a >Data source 3</a></li>
                     </ul>
                 </li>
-                <li class="nondropdown" id="li_30" onclick="openpage(this,'30')">
-                    <a >Data Scrubbing<span style="font-size:16px;" class="pull-right hidden-xs showopacity">
+                <li class="dropdown" id="li_30" onclick="openpage(this,'30')">
+                    <a  class="dropdown-toggle" data-toggle="dropdown">Data Scrubbing<span class="caret"></span><span style="font-size:16px;" class="pull-right hidden-xs showopacity">
                         <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                     </span></a>
+                    <ul class="dropdown-menu" role="menu">
+                        <li id="li_31" onclick="openpage(this,'31')"><a >Process</a></li>
+                    </ul>
                 </li>
-                <li class="nondropdown" id="li_40" onclick="openpage(this,'40')">
-                    <a >Model<span style="font-size:16px;" class="pull-right hidden-xs showopacity">
+                <li class="dropdown" id="li_40" onclick="openpage(this,'40')">
+                    <a  class="dropdown-toggle" data-toggle="dropdown">Model <span class="caret"></span><span style="font-size:16px;" class="pull-right hidden-xs showopacity">
                         <i class="fa fa-cogs" aria-hidden="true"></i>
                     </span></a>
+                    <ul class="dropdown-menu" role="menu">
+                        <li id="li_41" onclick="openpage(this,'41')"><a >Base Model</a></li>
+                        <li id="li_42" onclick="openpage(this,'42')"><a >Model Performance</a></li>
+                        <li id="li_43" onclick="openpage(this,'43')"><a >Final Model</a></li>
+                    </ul>
                 </li>
                 <li class="nondropdown" id="li_50" onclick="openpage(this,'50')">
                     <a >Results<span style="font-size:16px;" class="pull-right hidden-xs showopacity">

@@ -17,7 +17,14 @@ function createheadervis(){
         headerVis.node().appendChild(xml.documentElement);
 
         headerVisSvg = headerVis.select('svg');
-        headerVisSvg.attr("class","header-vis")
+        headerVisSvg.attr("class","header-vis");
+
+        // Get green nodes
+
+        // Get blue nodes
+
+        // Get aqua nodes
+
 
 
         $('#nav').affix({
