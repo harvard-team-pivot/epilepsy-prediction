@@ -60,6 +60,8 @@ var sidebar_items = [
     ,{"id":"43","page":"ipynb/40_model_03.html"}
     ,{"id":"50","page":"components/50-results.html"}
     ,{"id":"100","page":"components/100-references.html"}
+    ,{"id":"150","page":"components/150-process.html"}
+    ,{"id":"200","page":"components/200-sitemap.html"}
     ]
 
 function resetpagescroll(){
