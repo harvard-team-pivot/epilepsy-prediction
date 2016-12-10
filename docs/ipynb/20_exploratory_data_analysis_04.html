@@ -1,0 +1,624 @@
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[2]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="c1">###Hide</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="kn">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">scipy</span> <span class="kn">as</span> <span class="nn">sp</span>
+<span class="kn">from</span> <span class="nn">sklearn</span> <span class="kn">import</span> <span class="n">preprocessing</span>
+<span class="kn">from</span> <span class="nn">sklearn.cross_validation</span> <span class="kn">import</span> <span class="n">KFold</span>
+<span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LinearRegression</span>
+<span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LogisticRegression</span>
+<span class="kn">from</span> <span class="nn">sklearn.discriminant_analysis</span> <span class="kn">import</span> <span class="n">LinearDiscriminantAnalysis</span> <span class="k">as</span> <span class="n">LDA</span>
+<span class="kn">from</span> <span class="nn">sklearn.discriminant_analysis</span> <span class="kn">import</span> <span class="n">QuadraticDiscriminantAnalysis</span> <span class="k">as</span> <span class="n">QDA</span>
+<span class="kn">from</span> <span class="nn">sklearn.neighbors</span> <span class="kn">import</span> <span class="n">KNeighborsClassifier</span> <span class="k">as</span> <span class="n">KNN</span>
+<span class="kn">from</span> <span class="nn">sklearn.tree</span> <span class="kn">import</span> <span class="n">DecisionTreeClassifier</span> <span class="k">as</span> <span class="n">DecisionTree</span>
+<span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="kn">import</span> <span class="n">RandomForestClassifier</span> <span class="k">as</span> <span class="n">RandomForest</span>
+<span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="kn">import</span> <span class="n">AdaBoostClassifier</span> <span class="k">as</span> <span class="n">AdaBoost</span>
+<span class="kn">from</span> <span class="nn">sklearn.svm</span> <span class="kn">import</span> <span class="n">SVC</span>
+<span class="kn">from</span> <span class="nn">sklearn.cross_validation</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+<span class="kn">from</span> <span class="nn">sklearn</span> <span class="kn">import</span> <span class="n">metrics</span>
+<span class="kn">from</span> <span class="nn">sklearn</span> <span class="kn">import</span> <span class="n">grid_search</span>
+<span class="kn">from</span> <span class="nn">sklearn.decomposition</span> <span class="kn">import</span> <span class="n">PCA</span>
+<span class="kn">from</span> <span class="nn">sklearn</span> <span class="kn">import</span> <span class="n">feature_selection</span> <span class="k">as</span> <span class="n">fs</span>
+<span class="kn">import</span> <span class="nn">matplotlib</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">mpl_toolkits.mplot3d</span> <span class="kn">import</span> <span class="n">Axes3D</span>
+<span class="o">%</span><span class="k">matplotlib</span> inline
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Data-Source-4">Data Source 4<a class="anchor-link" href="#Data-Source-4">&#182;</a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Summary-of-data">Summary of data<a class="anchor-link" href="#Summary-of-data">&#182;</a></h3><h4 id="NCDS-Sweeps-0-to-3">NCDS Sweeps 0 to 3<a class="anchor-link" href="#NCDS-Sweeps-0-to-3">&#182;</a></h4><p>The National Child Development Study (NCDS) originated in the Perinatal Mortality Survey, which examined social and obstetric factors associated with still birth and infant mortality among over 17,000 babies born in Britain in one week in March 1958.  The study has broadened in scope to chart many aspects of the health, educational, and social development of cohort members as they passed through childhood and adolescence. We used results from the first three sweeps (1965 at age 7, 1969 at age 11, 1974 at age 16) in addition to the birth data.</p>
+<p>Surviving members of this birth cohort have been surveyed on five more occasions in order to monitor their changing health, education, social and economic circumstances.  We have excluded these datasets at this time in order to establish our baselines models.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[5]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="c1">#Load and inspect the ncds data</span>
+<span class="n">ncds_data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;datasets/ncds0123.txt&#39;</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">low_memory</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+<span class="c1"># Print shapes</span>
+<span class="k">print</span> <span class="s2">&quot;Shape of NCDS data:&quot;</span><span class="p">,</span> <span class="n">ncds_data</span><span class="o">.</span><span class="n">shape</span>
+<span class="n">ncds_data</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Shape of NCDS data: (18558, 1765)
+</pre>
+</div>
+</div>
+
+<div class="output_area"><div class="prompt output_prompt">Out[5]:</div>
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>ncdsid</th>
+      <th>n622</th>
+      <th>n0region</th>
+      <th>n1region</th>
+      <th>n2region</th>
+      <th>n3region</th>
+      <th>n553</th>
+      <th>n545</th>
+      <th>n520</th>
+      <th>n490</th>
+      <th>...</th>
+      <th>n1849</th>
+      <th>dvht07</th>
+      <th>dvht11</th>
+      <th>dvht16</th>
+      <th>dvrwt07</th>
+      <th>dvrwt11</th>
+      <th>dvrwt16</th>
+      <th>dvwt07</th>
+      <th>dvwt11</th>
+      <th>dvwt16</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>N10001N</td>
+      <td>2</td>
+      <td>9</td>
+      <td>9</td>
+      <td>9</td>
+      <td>9</td>
+      <td>23</td>
+      <td>4</td>
+      <td>2</td>
+      <td>12</td>
+      <td>...</td>
+      <td>-1</td>
+      <td>1.21899986267032</td>
+      <td>1.47299957275415</td>
+      <td>1.59999942779607</td>
+      <td>110.347991943347</td>
+      <td>98.1929931640604</td>
+      <td>105.055999755876</td>
+      <td>25.8549957275385</td>
+      <td>37.6489868164152</td>
+      <td>56.0199890136717</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>N10002P</td>
+      <td>1</td>
+      <td>9</td>
+      <td>8</td>
+      <td>8</td>
+      <td>8</td>
+      <td>34</td>
+      <td>4</td>
+      <td>5</td>
+      <td>1</td>
+      <td>...</td>
+      <td>-1</td>
+      <td>1.34599971771224</td>
+      <td>-1</td>
+      <td>-1</td>
+      <td>90.865997314449</td>
+      <td>-1</td>
+      <td>-1</td>
+      <td>26.3089904785155</td>
+      <td>-1</td>
+      <td>-1</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>N10003Q</td>
+      <td>1</td>
+      <td>4</td>
+      <td>4</td>
+      <td>4</td>
+      <td>4</td>
+      <td>34</td>
+      <td>4</td>
+      <td>10</td>
+      <td>1</td>
+      <td>...</td>
+      <td>-1</td>
+      <td>1.32099914550831</td>
+      <td>1.49899959564243</td>
+      <td>1.87999916076665</td>
+      <td>87.9599914550983</td>
+      <td>96.4049987792867</td>
+      <td>89.382995605487</td>
+      <td>24.4939880371087</td>
+      <td>38.1019897460905</td>
+      <td>66.6799926757659</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>N10004R</td>
+      <td>2</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>26</td>
+      <td>4</td>
+      <td>11</td>
+      <td>1</td>
+      <td>...</td>
+      <td>-1</td>
+      <td>1.29499912262003</td>
+      <td>1.51099967956562</td>
+      <td>1.62999916076665</td>
+      <td>105.16198730471</td>
+      <td>111.588989257796</td>
+      <td>132.054992675766</td>
+      <td>28.122985839843</td>
+      <td>45.8139953613169</td>
+      <td>72.7999877929584</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>N10005S</td>
+      <td>2</td>
+      <td>10</td>
+      <td>10</td>
+      <td>10</td>
+      <td>10</td>
+      <td>25</td>
+      <td>4</td>
+      <td>1</td>
+      <td>3</td>
+      <td>...</td>
+      <td>-1</td>
+      <td>1.34599971771224</td>
+      <td>-1</td>
+      <td>-1</td>
+      <td>129.382995605487</td>
+      <td>-1</td>
+      <td>-1</td>
+      <td>37.6489868164152</td>
+      <td>-1</td>
+      <td>-1</td>
+    </tr>
+  </tbody>
+</table>
+<p>5 rows × 1765 columns</p>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[6]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="c1">#Load and inspect the pms additions data</span>
+<span class="n">ncds_pms_data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;datasets/ncds_pms_additionals.txt&#39;</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">low_memory</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+<span class="c1"># Print shapes</span>
+<span class="k">print</span> <span class="s2">&quot;Shape of data:&quot;</span><span class="p">,</span> <span class="n">ncds_pms_data</span><span class="o">.</span><span class="n">shape</span>
+<span class="n">ncds_pms_data</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Shape of data: (16990, 54)
+</pre>
+</div>
+</div>
+
+<div class="output_area"><div class="prompt output_prompt">Out[6]:</div>
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>NCDSID</th>
+      <th>N622</th>
+      <th>BSTATUS</th>
+      <th>POD</th>
+      <th>BOOKING</th>
+      <th>PLANC</th>
+      <th>DIASTOL</th>
+      <th>MAXDBP</th>
+      <th>ALBECL</th>
+      <th>XRAY</th>
+      <th>...</th>
+      <th>DTB8</th>
+      <th>DTB9</th>
+      <th>DTB10</th>
+      <th>ILLNESS</th>
+      <th>MOD</th>
+      <th>TOD</th>
+      <th>AAD</th>
+      <th>SBNND</th>
+      <th>PLCWGT</th>
+      <th>TABLE62</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>N10001N</td>
+      <td>2</td>
+      <td>0</td>
+      <td>8</td>
+      <td>8</td>
+      <td>2</td>
+      <td>1</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>...</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>-1</td>
+      <td>-1</td>
+      <td>-1</td>
+      <td>-2</td>
+      <td>-1</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>N10002P</td>
+      <td>1</td>
+      <td>0</td>
+      <td>2</td>
+      <td>0</td>
+      <td>4</td>
+      <td>4</td>
+      <td>3</td>
+      <td>0</td>
+      <td>0</td>
+      <td>...</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>-1</td>
+      <td>-1</td>
+      <td>-1</td>
+      <td>-2</td>
+      <td>-1</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>N10003Q</td>
+      <td>1</td>
+      <td>0</td>
+      <td>8</td>
+      <td>8</td>
+      <td>2</td>
+      <td>1</td>
+      <td>3</td>
+      <td>0</td>
+      <td>0</td>
+      <td>...</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>3</td>
+      <td>0</td>
+      <td>-1</td>
+      <td>-1</td>
+      <td>-1</td>
+      <td>-2</td>
+      <td>-1</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>N10004R</td>
+      <td>2</td>
+      <td>0</td>
+      <td>8</td>
+      <td>8</td>
+      <td>2</td>
+      <td>1</td>
+      <td>-8</td>
+      <td>-8</td>
+      <td>1</td>
+      <td>...</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>-1</td>
+      <td>0</td>
+      <td>-1</td>
+      <td>-1</td>
+      <td>-1</td>
+      <td>-2</td>
+      <td>-1</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>N10005S</td>
+      <td>2</td>
+      <td>0</td>
+      <td>8</td>
+      <td>8</td>
+      <td>2</td>
+      <td>1</td>
+      <td>3</td>
+      <td>0</td>
+      <td>1</td>
+      <td>...</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>-1</td>
+      <td>-1</td>
+      <td>-1</td>
+      <td>-2</td>
+      <td>-1</td>
+    </tr>
+  </tbody>
+</table>
+<p>5 rows × 54 columns</p>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[7]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="c1">#Load and inspect the response data</span>
+<span class="n">ncds_response_data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;datasets/ncds_response.txt&#39;</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">low_memory</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+<span class="c1"># Print shapes</span>
+<span class="k">print</span> <span class="s2">&quot;Shape of data:&quot;</span><span class="p">,</span> <span class="n">ncds_response_data</span><span class="o">.</span><span class="n">shape</span>
+<span class="n">ncds_response_data</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Shape of data: (18558, 18)
+</pre>
+</div>
+</div>
+
+<div class="output_area"><div class="prompt output_prompt">Out[7]:</div>
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>NCDSID</th>
+      <th>N622</th>
+      <th>BSTATUS</th>
+      <th>COBIRTH</th>
+      <th>MULTIPNO</th>
+      <th>MULTCODE</th>
+      <th>ETHNICID</th>
+      <th>OUTCME00</th>
+      <th>OUTCME01</th>
+      <th>OUTCME02</th>
+      <th>OUTCME03</th>
+      <th>OUTCME04</th>
+      <th>OUTCME05</th>
+      <th>OUTCME06</th>
+      <th>OUTCMEBM</th>
+      <th>OUTCME07</th>
+      <th>OUTCME08</th>
+      <th>OUTCME09</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>N10001N</td>
+      <td>2</td>
+      <td>0</td>
+      <td>1</td>
+      <td>-1</td>
+      <td>-1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>N10002P</td>
+      <td>1</td>
+      <td>0</td>
+      <td>1</td>
+      <td>-1</td>
+      <td>-1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>N10003Q</td>
+      <td>1</td>
+      <td>0</td>
+      <td>1</td>
+      <td>-1</td>
+      <td>-1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>7</td>
+      <td>7</td>
+      <td>7</td>
+      <td>6</td>
+      <td>7</td>
+      <td>7</td>
+      <td>7</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>N10004R</td>
+      <td>2</td>
+      <td>0</td>
+      <td>1</td>
+      <td>-1</td>
+      <td>-1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>2</td>
+      <td>2</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>N10005S</td>
+      <td>2</td>
+      <td>0</td>
+      <td>2</td>
+      <td>-1</td>
+      <td>-1</td>
+      <td>5</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>2</td>
+      <td>2</td>
+      <td>2</td>
+      <td>6</td>
+      <td>6</td>
+      <td>6</td>
+      <td>6</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span> 
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>

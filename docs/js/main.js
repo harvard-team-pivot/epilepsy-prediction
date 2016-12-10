@@ -51,6 +51,7 @@ var sidebar_items = [
     ,{"id":"21","page":"ipynb/20_exploratory_data_analysis_01.html"}
     ,{"id":"22","page":"ipynb/20_exploratory_data_analysis_02.html"}
     ,{"id":"23","page":"ipynb/20_exploratory_data_analysis_03.html"}
+    ,{"id":"24","page":"ipynb/20_exploratory_data_analysis_04.html"}
     ,{"id":"30","page":"components/30-data-scrubbing.html"}
     ,{"id":"31","page":"ipynb/30_data_scrubbing_01.html"}
     ,{"id":"40","page":"components/40-model.html"}
