@@ -2,12 +2,44 @@
     <div class="col-sm-12">
         <div class="page-header">Model</div>
 
-        Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium,
-        totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae
-        dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia cor magni dolores
-        eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit,
-        sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem.
-        Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur?
+        <p>Our approach to build a model will be by using a classification method. We need to predict a qualitative response - a yes or no answer on whether a patient has epilepsy or not. We will run our data through various statistical algorithms that preforms classifications. Our goal will be to find the best model in terms of accuracy of predictions</p>
+        <br>
+
+        <h4>Comparing Classification Models</h4>
+        <p>
+            <h5>Memory requirement for various classification model</h5>
+        <ul>
+        <li><b>KNN:</b>
+        Requires the entire training set to be stored in the memory if we are considering the naivest way to perform a lookup. So the memory requirement of KNN will be high and will be dependent on the training set size<li><b>Logistic Regression</b>
+        Only stores the coefficients of the predictors, so the memory requirements will be relatively low. But can get high depending on number of predictors.
+        </li><li><b>LDA / QDA</b>
+        Only stores the estimates of the center and spread/variance of the normal distribution of each predictor. So the memory requirements will be relatively low. But can get high depending on number of predictors.
+        </li><li><b>Decision Trees</b>
+        Stores the rules that determine the splits and the various node details. The memory requirement can get high if the depth of tree is very large.
+        </li><li><b>SVC</b>
+        Stores only the support vector points - Points that describe the decision boundary. In SVC we need to  only store a small number of support vectors and therefore the memory requirement for this machine learning algorithm is very small and makes SVM a preferred choice as a classification model
+        </li>
+        </ul>
+        </p>
+        <hr class="col-sm-12">
+        <p>
+            <h5>Cost of making predictions for various classification model</h5>
+        <ul>
+        <li><b>KNN:</b>
+        Needs to look at every data point in the training set to find the nearest neighbors. So this method is computationally heavy
+        </li><li><b>Logistic Regression: </b>
+        Needs to find the dot products of coefficients with the predictors and then compute the sign of the scores.
+        </li><li><b>LDA / QDA:</b>
+        For each predictor data point, we plug in the value based on the equation using the center and variance of the predictors distribution. Check if one quantity is less than the other. This would be computationally heavy based on the number of predictors and number of data points
+        </li><li><b>Decision Trees:</b>
+        We need to traverse the entire tree with the predictor points we need to use to classify. Depending on the size of the tree this can get computationally heavy
+        </li><li><b>SVC:</b>
+        Compare new points to the support vector points and decide on the prediction. Computationally this is light compared to other models. However it should be noted the intial cost of fitting a model is extremely high
+        </li>
+        </ul>
+        </p>
+
+
 
     </div>
 </div>

@@ -1,10 +1,33 @@
 
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[1]:</div>
+<div class="prompt input_prompt">In&nbsp;[2]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1">###Hide</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="kn">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">scipy</span> <span class="kn">as</span> <span class="nn">sp</span>
+<span class="kn">from</span> <span class="nn">sklearn</span> <span class="kn">import</span> <span class="n">preprocessing</span>
+<span class="kn">from</span> <span class="nn">sklearn.cross_validation</span> <span class="kn">import</span> <span class="n">KFold</span>
+<span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LinearRegression</span>
+<span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LogisticRegression</span>
+<span class="kn">from</span> <span class="nn">sklearn.discriminant_analysis</span> <span class="kn">import</span> <span class="n">LinearDiscriminantAnalysis</span> <span class="k">as</span> <span class="n">LDA</span>
+<span class="kn">from</span> <span class="nn">sklearn.discriminant_analysis</span> <span class="kn">import</span> <span class="n">QuadraticDiscriminantAnalysis</span> <span class="k">as</span> <span class="n">QDA</span>
+<span class="kn">from</span> <span class="nn">sklearn.neighbors</span> <span class="kn">import</span> <span class="n">KNeighborsClassifier</span> <span class="k">as</span> <span class="n">KNN</span>
+<span class="kn">from</span> <span class="nn">sklearn.tree</span> <span class="kn">import</span> <span class="n">DecisionTreeClassifier</span> <span class="k">as</span> <span class="n">DecisionTree</span>
+<span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="kn">import</span> <span class="n">RandomForestClassifier</span> <span class="k">as</span> <span class="n">RandomForest</span>
+<span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="kn">import</span> <span class="n">AdaBoostClassifier</span> <span class="k">as</span> <span class="n">AdaBoost</span>
+<span class="kn">from</span> <span class="nn">sklearn.svm</span> <span class="kn">import</span> <span class="n">SVC</span>
+<span class="kn">from</span> <span class="nn">sklearn.cross_validation</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+<span class="kn">from</span> <span class="nn">sklearn</span> <span class="kn">import</span> <span class="n">metrics</span>
+<span class="kn">from</span> <span class="nn">sklearn</span> <span class="kn">import</span> <span class="n">grid_search</span>
+<span class="kn">from</span> <span class="nn">sklearn.decomposition</span> <span class="kn">import</span> <span class="n">PCA</span>
+<span class="kn">from</span> <span class="nn">sklearn</span> <span class="kn">import</span> <span class="n">feature_selection</span> <span class="k">as</span> <span class="n">fs</span>
+<span class="kn">import</span> <span class="nn">matplotlib</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">mpl_toolkits.mplot3d</span> <span class="kn">import</span> <span class="n">Axes3D</span>
+<span class="o">%</span><span class="k">matplotlib</span> inline
 </pre></div>
 
 </div>
@@ -21,16 +44,745 @@
 </div>
 </div>
 </div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Summary-of-the-data">Summary of the data<a class="anchor-link" href="#Summary-of-the-data">&#182;</a></h4><p>The National Child Development Study (NCDS) was a perinated mortality survey which examined the social factors assosiated with stillbirth and infant mortality over 17000 babies born in the UK during 1958. Since then the cohort has been survery on six other times in order to monitor their health. These surveys were carried out in 1965 (age 7), 1969 (age 11), 1974 (age 16), 1981 (age 23), 1991 (age 33) and 1999/2000 (age 41/42). As part of the 1991 survey, a special study was also undertaken of the children of one third of the cohort members, including assessments of the behaviour and cognitive development of approximately 5000 children. There have also been surveys of sub-samples of the cohort, the most recent occurring in 1996 (age 37) when information was collected on the basic skills of a 10% sample of cohort members. <a href="../references/ncds_and_bcs70_response.pdf">[reference]</a></p>
+<p>There are three files that contain the survey responses from the various subjects. Our analysis will be for these three files.</p>
+<p>File Name : ncds0123
+, Number of variables =     1765
+, Number of cases =     18558</p>
+<p>File Name : ncds_pms_additionals
+, Number of variables =     54
+, Number of cases =     16990</p>
+<p>File Name : ncds_response
+, Number of variables =     18
+, Number of cases =     18558</p>
+<p>In the next section we will follow the data science pipline process to explore and clean the data</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Explore-and-Clean-Data">Explore and Clean Data<a class="anchor-link" href="#Explore-and-Clean-Data">&#182;</a></h2><p>First task will be to read, explore, and clean the data.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Step-1:-Load-the-data">Step 1: Load the data<a class="anchor-link" href="#Step-1:-Load-the-data">&#182;</a></h4>
+</div>
+</div>
+</div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[3]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span> 
+<div class=" highlight hl-ipython2"><pre><span></span><span class="c1">#Load and inspect the ncds data</span>
+<span class="n">ncds_data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;datasets/ncds0123.txt&#39;</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">low_memory</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+<span class="c1"># Print shapes</span>
+<span class="k">print</span> <span class="s2">&quot;Shape of data:&quot;</span><span class="p">,</span> <span class="n">ncds_data</span><span class="o">.</span><span class="n">shape</span>
+<span class="n">ncds_data</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 
 </div>
 </div>
 </div>
 
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Shape of data: (18558, 1765)
+</pre>
+</div>
+</div>
+
+<div class="output_area"><div class="prompt output_prompt">Out[3]:</div>
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>ncdsid</th>
+      <th>n622</th>
+      <th>n0region</th>
+      <th>n1region</th>
+      <th>n2region</th>
+      <th>n3region</th>
+      <th>n553</th>
+      <th>n545</th>
+      <th>n520</th>
+      <th>n490</th>
+      <th>...</th>
+      <th>n1849</th>
+      <th>dvht07</th>
+      <th>dvht11</th>
+      <th>dvht16</th>
+      <th>dvrwt07</th>
+      <th>dvrwt11</th>
+      <th>dvrwt16</th>
+      <th>dvwt07</th>
+      <th>dvwt11</th>
+      <th>dvwt16</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>N10001N</td>
+      <td>2</td>
+      <td>9</td>
+      <td>9</td>
+      <td>9</td>
+      <td>9</td>
+      <td>23</td>
+      <td>4</td>
+      <td>2</td>
+      <td>12</td>
+      <td>...</td>
+      <td>-1</td>
+      <td>1.21899986267032</td>
+      <td>1.47299957275415</td>
+      <td>1.59999942779607</td>
+      <td>110.347991943347</td>
+      <td>98.1929931640604</td>
+      <td>105.055999755876</td>
+      <td>25.8549957275385</td>
+      <td>37.6489868164152</td>
+      <td>56.0199890136717</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>N10002P</td>
+      <td>1</td>
+      <td>9</td>
+      <td>8</td>
+      <td>8</td>
+      <td>8</td>
+      <td>34</td>
+      <td>4</td>
+      <td>5</td>
+      <td>1</td>
+      <td>...</td>
+      <td>-1</td>
+      <td>1.34599971771224</td>
+      <td>-1</td>
+      <td>-1</td>
+      <td>90.865997314449</td>
+      <td>-1</td>
+      <td>-1</td>
+      <td>26.3089904785155</td>
+      <td>-1</td>
+      <td>-1</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>N10003Q</td>
+      <td>1</td>
+      <td>4</td>
+      <td>4</td>
+      <td>4</td>
+      <td>4</td>
+      <td>34</td>
+      <td>4</td>
+      <td>10</td>
+      <td>1</td>
+      <td>...</td>
+      <td>-1</td>
+      <td>1.32099914550831</td>
+      <td>1.49899959564243</td>
+      <td>1.87999916076665</td>
+      <td>87.9599914550983</td>
+      <td>96.4049987792867</td>
+      <td>89.382995605487</td>
+      <td>24.4939880371087</td>
+      <td>38.1019897460905</td>
+      <td>66.6799926757659</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>N10004R</td>
+      <td>2</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>26</td>
+      <td>4</td>
+      <td>11</td>
+      <td>1</td>
+      <td>...</td>
+      <td>-1</td>
+      <td>1.29499912262003</td>
+      <td>1.51099967956562</td>
+      <td>1.62999916076665</td>
+      <td>105.16198730471</td>
+      <td>111.588989257796</td>
+      <td>132.054992675766</td>
+      <td>28.122985839843</td>
+      <td>45.8139953613169</td>
+      <td>72.7999877929584</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>N10005S</td>
+      <td>2</td>
+      <td>10</td>
+      <td>10</td>
+      <td>10</td>
+      <td>10</td>
+      <td>25</td>
+      <td>4</td>
+      <td>1</td>
+      <td>3</td>
+      <td>...</td>
+      <td>-1</td>
+      <td>1.34599971771224</td>
+      <td>-1</td>
+      <td>-1</td>
+      <td>129.382995605487</td>
+      <td>-1</td>
+      <td>-1</td>
+      <td>37.6489868164152</td>
+      <td>-1</td>
+      <td>-1</td>
+    </tr>
+  </tbody>
+</table>
+<p>5 rows × 1765 columns</p>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[4]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="c1">#Load and inspect the pms additions data</span>
+<span class="n">ncds_pms_data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;datasets/ncds_pms_additionals.txt&#39;</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">low_memory</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+<span class="c1"># Print shapes</span>
+<span class="k">print</span> <span class="s2">&quot;Shape of data:&quot;</span><span class="p">,</span> <span class="n">ncds_pms_data</span><span class="o">.</span><span class="n">shape</span>
+<span class="n">ncds_pms_data</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Shape of data: (16990, 54)
+</pre>
+</div>
+</div>
+
+<div class="output_area"><div class="prompt output_prompt">Out[4]:</div>
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>NCDSID</th>
+      <th>N622</th>
+      <th>BSTATUS</th>
+      <th>POD</th>
+      <th>BOOKING</th>
+      <th>PLANC</th>
+      <th>DIASTOL</th>
+      <th>MAXDBP</th>
+      <th>ALBECL</th>
+      <th>XRAY</th>
+      <th>...</th>
+      <th>DTB8</th>
+      <th>DTB9</th>
+      <th>DTB10</th>
+      <th>ILLNESS</th>
+      <th>MOD</th>
+      <th>TOD</th>
+      <th>AAD</th>
+      <th>SBNND</th>
+      <th>PLCWGT</th>
+      <th>TABLE62</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>N10001N</td>
+      <td>2</td>
+      <td>0</td>
+      <td>8</td>
+      <td>8</td>
+      <td>2</td>
+      <td>1</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>...</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>-1</td>
+      <td>-1</td>
+      <td>-1</td>
+      <td>-2</td>
+      <td>-1</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>N10002P</td>
+      <td>1</td>
+      <td>0</td>
+      <td>2</td>
+      <td>0</td>
+      <td>4</td>
+      <td>4</td>
+      <td>3</td>
+      <td>0</td>
+      <td>0</td>
+      <td>...</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>-1</td>
+      <td>-1</td>
+      <td>-1</td>
+      <td>-2</td>
+      <td>-1</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>N10003Q</td>
+      <td>1</td>
+      <td>0</td>
+      <td>8</td>
+      <td>8</td>
+      <td>2</td>
+      <td>1</td>
+      <td>3</td>
+      <td>0</td>
+      <td>0</td>
+      <td>...</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>3</td>
+      <td>0</td>
+      <td>-1</td>
+      <td>-1</td>
+      <td>-1</td>
+      <td>-2</td>
+      <td>-1</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>N10004R</td>
+      <td>2</td>
+      <td>0</td>
+      <td>8</td>
+      <td>8</td>
+      <td>2</td>
+      <td>1</td>
+      <td>-8</td>
+      <td>-8</td>
+      <td>1</td>
+      <td>...</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>-1</td>
+      <td>0</td>
+      <td>-1</td>
+      <td>-1</td>
+      <td>-1</td>
+      <td>-2</td>
+      <td>-1</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>N10005S</td>
+      <td>2</td>
+      <td>0</td>
+      <td>8</td>
+      <td>8</td>
+      <td>2</td>
+      <td>1</td>
+      <td>3</td>
+      <td>0</td>
+      <td>1</td>
+      <td>...</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>-1</td>
+      <td>-1</td>
+      <td>-1</td>
+      <td>-2</td>
+      <td>-1</td>
+    </tr>
+  </tbody>
+</table>
+<p>5 rows × 54 columns</p>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[5]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="c1">#Load and inspect the response data</span>
+<span class="n">ncds_response_data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;datasets/ncds_response.txt&#39;</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">low_memory</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+<span class="c1"># Print shapes</span>
+<span class="k">print</span> <span class="s2">&quot;Shape of data:&quot;</span><span class="p">,</span> <span class="n">ncds_response_data</span><span class="o">.</span><span class="n">shape</span>
+<span class="n">ncds_response_data</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Shape of data: (18558, 18)
+</pre>
+</div>
+</div>
+
+<div class="output_area"><div class="prompt output_prompt">Out[5]:</div>
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>NCDSID</th>
+      <th>N622</th>
+      <th>BSTATUS</th>
+      <th>COBIRTH</th>
+      <th>MULTIPNO</th>
+      <th>MULTCODE</th>
+      <th>ETHNICID</th>
+      <th>OUTCME00</th>
+      <th>OUTCME01</th>
+      <th>OUTCME02</th>
+      <th>OUTCME03</th>
+      <th>OUTCME04</th>
+      <th>OUTCME05</th>
+      <th>OUTCME06</th>
+      <th>OUTCMEBM</th>
+      <th>OUTCME07</th>
+      <th>OUTCME08</th>
+      <th>OUTCME09</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>N10001N</td>
+      <td>2</td>
+      <td>0</td>
+      <td>1</td>
+      <td>-1</td>
+      <td>-1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>N10002P</td>
+      <td>1</td>
+      <td>0</td>
+      <td>1</td>
+      <td>-1</td>
+      <td>-1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>N10003Q</td>
+      <td>1</td>
+      <td>0</td>
+      <td>1</td>
+      <td>-1</td>
+      <td>-1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>7</td>
+      <td>7</td>
+      <td>7</td>
+      <td>6</td>
+      <td>7</td>
+      <td>7</td>
+      <td>7</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>N10004R</td>
+      <td>2</td>
+      <td>0</td>
+      <td>1</td>
+      <td>-1</td>
+      <td>-1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>2</td>
+      <td>2</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>N10005S</td>
+      <td>2</td>
+      <td>0</td>
+      <td>2</td>
+      <td>-1</td>
+      <td>-1</td>
+      <td>5</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>2</td>
+      <td>2</td>
+      <td>2</td>
+      <td>6</td>
+      <td>6</td>
+      <td>6</td>
+      <td>6</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Let us first join all the threee datasets, so we can work on all the data together.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[6]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># Join datasets</span>
+<span class="n">ncds_merged_data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">left</span><span class="o">=</span><span class="n">ncds_data</span><span class="p">,</span><span class="n">right</span><span class="o">=</span><span class="n">ncds_pms_data</span><span class="p">,</span><span class="n">how</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">,</span><span class="n">left_on</span><span class="o">=</span><span class="s1">&#39;ncdsid&#39;</span><span class="p">,</span><span class="n">right_on</span><span class="o">=</span><span class="s1">&#39;NCDSID&#39;</span><span class="p">)</span>
+<span class="n">ncds_merged_data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">left</span><span class="o">=</span><span class="n">ncds_merged_data</span><span class="p">,</span><span class="n">right</span><span class="o">=</span><span class="n">ncds_response_data</span><span class="p">,</span><span class="n">how</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">,</span><span class="n">left_on</span><span class="o">=</span><span class="s1">&#39;ncdsid&#39;</span><span class="p">,</span><span class="n">right_on</span><span class="o">=</span><span class="s1">&#39;NCDSID&#39;</span><span class="p">)</span>
+<span class="k">print</span> <span class="s2">&quot;Shape of data:&quot;</span><span class="p">,</span> <span class="n">ncds_merged_data</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Shape of data: (18558, 1837)
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[7]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="c1">#Hide</span>
+
+<span class="c1"># Utility methods for data exploring and cleaning</span>
+<span class="k">def</span> <span class="nf">evaluate_data</span><span class="p">(</span><span class="n">df</span><span class="p">):</span>
+    <span class="c1"># Check for range of unique values for the train data</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]):</span>
+        <span class="n">vals</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span> <span class="n">i</span><span class="p">])</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">vals</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">15</span><span class="p">:</span>
+            <span class="k">print</span> <span class="s1">&#39;(Categorical) {} unique values - {}: {}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">vals</span><span class="p">),</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">vals</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">print</span> <span class="s1">&#39;(Continuous) range of values - &#39;</span><span class="p">,</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="s1">&#39;: {} to {}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span> <span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="n">df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span> <span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">())</span>
+
+<span class="k">def</span> <span class="nf">evaluate_epil_columns</span><span class="p">(</span><span class="n">df</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">column</span> <span class="ow">in</span> <span class="n">epil_columns</span><span class="p">:</span>
+        <span class="n">vals</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">column</span><span class="p">])</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">vals</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">15</span><span class="p">:</span>
+            <span class="k">print</span> <span class="s1">&#39;(Categorical) {} unique values - {}: {}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">vals</span><span class="p">),</span> <span class="n">column</span><span class="p">,</span> <span class="n">vals</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">print</span> <span class="s1">&#39;(Continuous) range of values - &#39;</span><span class="p">,</span> <span class="n">column</span><span class="p">,</span> <span class="s1">&#39;: {} to {}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">column</span><span class="p">]</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="n">df</span><span class="p">[</span><span class="n">column</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">())</span>
+
+
+<span class="k">def</span> <span class="nf">columns_with_null</span><span class="p">(</span><span class="n">df</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">column</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
+        <span class="n">df_missing</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="n">column</span><span class="p">]</span><span class="o">.</span><span class="n">isnull</span><span class="p">()]</span>
+        <span class="n">count</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">if</span> <span class="n">df_missing</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">print</span> <span class="s2">&quot;Predictor &quot;</span> <span class="p">,</span> <span class="n">column</span><span class="p">,</span> <span class="s2">&quot; contain null values / Count = &quot;</span> <span class="p">,</span><span class="n">df_missing</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="n">count</span> <span class="o">=</span> <span class="n">count</span> <span class="o">+</span><span class="mi">1</span>
+    <span class="k">print</span> <span class="s2">&quot;Total number of columns with null:&quot;</span><span class="p">,</span><span class="n">count</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Step-2:-Understand-the-data">Step 2: Understand the data<a class="anchor-link" href="#Step-2:-Understand-the-data">&#182;</a></h4><ol>
+<li>Explore the data</li>
+<li>Understand the predictors, what they mean in real life</li>
+<li>Understand the values of each predictors</li>
+</ol>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h5 id="Data-Analysis-/-Exploration">Data Analysis / Exploration<a class="anchor-link" href="#Data-Analysis-/-Exploration">&#182;</a></h5>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Step-3:-Handle-missing-data">Step 3: Handle missing data<a class="anchor-link" href="#Step-3:-Handle-missing-data">&#182;</a></h4><p>Are there any missing values, if there are:</p>
+<ol>
+<li>Can we impute them based on some algorithm</li>
+<li>Remove or ignore them</li>
+<li>Assume values based on common sense or prior knowledge</li>
+</ol>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Step-4:-Identify-Epilepsy-Records">Step 4: Identify Epilepsy Records<a class="anchor-link" href="#Step-4:-Identify-Epilepsy-Records">&#182;</a></h4><p>In our data a patient is assumed to be epileptic is one or more conditions are satisified in the dataset. We need to check all the conditions in the data and determine if the patient is epileptic.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Step-5:-Save-cleaned-data">Step 5: Save cleaned data<a class="anchor-link" href="#Step-5:-Save-cleaned-data">&#182;</a></h4><p>Save our cleaned dataset so we can use it later in our modeling step</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+
+</div>
+</div>
 </div>
