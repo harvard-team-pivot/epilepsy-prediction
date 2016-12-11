@@ -5,6 +5,53 @@
         <p>Our approach to build a model will be by using a classification method. We need to predict a qualitative response - a yes or no answer on whether a patient has epilepsy or not. We will run our data through various statistical algorithms that preforms classifications. Our goal will be to find the best model in terms of accuracy of predictions</p>
         <br>
 
+
+        <h4>Data Science Process: Model the Data</h4>
+        <ul>
+            <li><b>Step 1: Build Base Models</b>
+
+                <ul>
+                    <li><b>Step 1.1: Load the cleaned data</b></li>
+                    <li><b>Step 1.2: Split data into train and test</b>
+                        <br>Split our dataset into train and test and analyze the splits. We can explore and verify the matrix of classes to check if our data is balanced. If the class is Imbalanced we will need to do any of the following:
+                        <ul>
+                            <li>Over sample</li>
+                            <li>Under sample</li>
+                            <li>Over weight</li>
+                            <li>Adjust class weights in model</li>
+                        </ul>
+                    </li>
+                    <li><b>Step 1.3: Feature Selection</b>
+                    <br>Find the best features that we can use to build the model.
+                    </li>
+                    <li><b>Step 1.4: Build various models</b>
+                        <br>Build various classification models
+                        <ul>
+                            <li>Unweighted Logistic Regression</li>
+                            <li>Weighted Logistic Regression</li>
+                            <li>Linear Discriminant Analysis</li>
+                            <li>Quadratic  Discriminant Analysis</li>
+                            <li>Decision Trees</li>
+                            <li>Random Forest</li>
+                            <li>Support Vector Classification</li>
+                            <li>K-Nearest Neighbors</li>
+                        </ul>
+                    </li>
+                    <li><b>Step 1.4: Define Performance Metric</b></li>
+                </ul>
+                <br>
+            </li>
+            <li><b>Step 2: Tuning to Maximize Model Performance</b>
+            <br>In this step we will focus on some of the models from the previous step and tune the parameters to get better performance
+
+                <br>
+            </li>
+            <li><b>Step 3: Build Final Model</b>
+            <br>Select the best performing model from the previous step and build the final model
+            </li>
+        </ul>
+
+        <hr class="col-sm-12">
         <h4>Comparing Classification Models</h4>
         <p>
             <h5>Memory requirement for various classification model</h5>
