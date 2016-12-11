@@ -33,6 +33,8 @@ $(function() {
                 e.stopPropagation();
             }
         });
+
+        loadpagefromurl();
     });
 
     //$('#body').load('components/01-overview.html?'+ticks, function() {});
@@ -80,6 +82,7 @@ function openpage(li,id){
         $('#body').load('components/01-overview.html?'+ticks, function() {
             resetpagescroll();
         });
+        current_page_index = 0;
     }else{
         $('#body').load(item.page+'?'+ticks, function() {
             resetpagescroll();
@@ -101,8 +104,9 @@ function openpage(li,id){
                 });
             }
         });
+        current_page_index = _.findIndex(sidebar_items, function(o) { return o.id == id; });
     }
-
+    console.log(current_page_index)
 
 }
 
@@ -115,7 +119,10 @@ function previouspage(){
         $('#previous_button').removeClass("disabled");
     }
     $('#next_button').removeClass("disabled");
-    openpage(sidebar_items[current_page_index].id);
+
+    var id = sidebar_items[current_page_index].id;
+    var li = $('#li_' + id)[0];
+    openpage(li, id);
 }
 
 function nextpage(){
@@ -127,7 +134,10 @@ function nextpage(){
         $('#next_button').removeClass("disabled");
     }
     $('#previous_button').removeClass("disabled");
-    openpage(sidebar_items[current_page_index].id);
+
+    var id = sidebar_items[current_page_index].id;
+    var li = $('#li_' + id)[0];
+    openpage(li, id);
 }
 
 $(function() {
@@ -151,15 +161,20 @@ function getUrlParameter(sParam) {
     }
 }
 
-var id = getUrlParameter('id');
-console.log(id)
-// Init with overview page or the page with id
-if(id){
-    openpage(null,id)
-}else{
-    // By default open the overview page
-    $('#body').load('components/01-overview.html?'+ticks, function() {
-        //resetpagescroll();
-    });
+function loadpagefromurl() {
+    var id = getUrlParameter('id');
+    console.log(id)
+    // Init with overview page or the page with id
+    if (id) {
+        var li = $('#li_' + id)[0];
+        openpage(li, id);
+    } else {
+        // By default open the overview page
+        $('#body').load('components/01-overview.html?' + ticks, function () {
+            //resetpagescroll();
+        });
+    }
 }
+
+
 
