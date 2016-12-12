@@ -2146,10 +2146,12 @@ PwGvFHOcE6L73gAAAABJRU5ErkJggg==
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[7]:</div>
+<div class="prompt input_prompt">In&nbsp;[23]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="n">ncds_data_no_indicators</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+<div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># Logistic with l1 penalty</span>
+<span class="n">tune_params_l1</span><span class="p">[</span><span class="s1">&#39;sum&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">tune_params_l1</span><span class="p">[</span><span class="s1">&#39;class0&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="n">tune_params_l1</span><span class="p">[</span><span class="s1">&#39;class1&#39;</span><span class="p">]</span>
+<span class="n">tune_params_l1</span><span class="o">.</span><span class="n">sort_values</span><span class="p">([</span><span class="s1">&#39;sum&#39;</span><span class="p">],</span> <span class="n">ascending</span><span class="o">=</span><span class="p">[</span><span class="bp">False</span><span class="p">])</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
 </pre></div>
 
 </div>
@@ -2160,7 +2162,7 @@ PwGvFHOcE6L73gAAAABJRU5ErkJggg==
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[7]:</div>
+<div class="output_area"><div class="prompt output_prompt">Out[23]:</div>
 
 <div class="output_html rendered_html output_subarea output_execute_result">
 <div>
@@ -2168,153 +2170,118 @@ PwGvFHOcE6L73gAAAABJRU5ErkJggg==
   <thead>
     <tr style="text-align: right;">
       <th></th>
-      <th>n622</th>
-      <th>n0region</th>
-      <th>n1region</th>
-      <th>n2region</th>
-      <th>n3region</th>
-      <th>n553</th>
-      <th>n545</th>
-      <th>n520</th>
-      <th>n490</th>
-      <th>n492</th>
-      <th>...</th>
-      <th>OUTCME02</th>
-      <th>OUTCME03</th>
-      <th>OUTCME04</th>
-      <th>OUTCME05</th>
-      <th>OUTCME06</th>
-      <th>OUTCMEBM</th>
-      <th>OUTCME07</th>
-      <th>OUTCME08</th>
-      <th>OUTCME09</th>
-      <th>epileptic</th>
+      <th>x_index</th>
+      <th>C</th>
+      <th>NOF</th>
+      <th>class0</th>
+      <th>class1</th>
+      <th>overall</th>
+      <th>sum</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <th>0</th>
-      <td>2.0</td>
-      <td>9.0</td>
-      <td>9.0</td>
-      <td>9.0</td>
-      <td>9.0</td>
-      <td>23.0</td>
-      <td>4.0</td>
-      <td>2.0</td>
-      <td>12.0</td>
-      <td>5.0</td>
-      <td>...</td>
-      <td>1.0</td>
-      <td>1.0</td>
-      <td>1.0</td>
-      <td>1.0</td>
-      <td>1.0</td>
-      <td>1.0</td>
-      <td>1.0</td>
-      <td>1.0</td>
-      <td>1.0</td>
-      <td>0</td>
+      <th>123</th>
+      <td>123.0</td>
+      <td>0.03</td>
+      <td>40.0</td>
+      <td>0.691759</td>
+      <td>0.582003</td>
+      <td>0.681573</td>
+      <td>1.273762</td>
     </tr>
     <tr>
-      <th>1</th>
-      <td>1.0</td>
-      <td>9.0</td>
-      <td>8.0</td>
-      <td>8.0</td>
-      <td>8.0</td>
-      <td>34.0</td>
-      <td>4.0</td>
-      <td>5.0</td>
-      <td>1.0</td>
-      <td>4.0</td>
-      <td>...</td>
-      <td>1.0</td>
-      <td>1.0</td>
-      <td>1.0</td>
-      <td>1.0</td>
-      <td>1.0</td>
-      <td>1.0</td>
-      <td>1.0</td>
-      <td>1.0</td>
-      <td>1.0</td>
-      <td>0</td>
+      <th>143</th>
+      <td>143.0</td>
+      <td>0.04</td>
+      <td>45.0</td>
+      <td>0.692205</td>
+      <td>0.580552</td>
+      <td>0.681843</td>
+      <td>1.272756</td>
     </tr>
     <tr>
-      <th>2</th>
-      <td>2.0</td>
-      <td>1.0</td>
-      <td>1.0</td>
-      <td>1.0</td>
-      <td>1.0</td>
-      <td>26.0</td>
-      <td>4.0</td>
-      <td>11.0</td>
-      <td>1.0</td>
-      <td>4.0</td>
-      <td>...</td>
-      <td>1.0</td>
-      <td>1.0</td>
-      <td>1.0</td>
-      <td>1.0</td>
-      <td>1.0</td>
-      <td>1.0</td>
-      <td>2.0</td>
-      <td>2.0</td>
-      <td>3.0</td>
-      <td>0</td>
+      <th>125</th>
+      <td>125.0</td>
+      <td>0.08</td>
+      <td>40.0</td>
+      <td>0.691908</td>
+      <td>0.580552</td>
+      <td>0.681573</td>
+      <td>1.272459</td>
     </tr>
     <tr>
-      <th>3</th>
-      <td>2.0</td>
-      <td>10.0</td>
-      <td>10.0</td>
-      <td>10.0</td>
-      <td>10.0</td>
-      <td>25.0</td>
-      <td>4.0</td>
-      <td>1.0</td>
-      <td>3.0</td>
-      <td>6.0</td>
-      <td>...</td>
-      <td>1.0</td>
-      <td>1.0</td>
-      <td>2.0</td>
-      <td>2.0</td>
-      <td>2.0</td>
-      <td>6.0</td>
-      <td>6.0</td>
-      <td>6.0</td>
-      <td>6.0</td>
-      <td>0</td>
+      <th>142</th>
+      <td>142.0</td>
+      <td>0.03</td>
+      <td>45.0</td>
+      <td>0.691759</td>
+      <td>0.580552</td>
+      <td>0.681439</td>
+      <td>1.272311</td>
     </tr>
     <tr>
-      <th>4</th>
-      <td>2.0</td>
-      <td>7.0</td>
-      <td>7.0</td>
-      <td>7.0</td>
-      <td>7.0</td>
-      <td>26.0</td>
-      <td>4.0</td>
-      <td>1.0</td>
-      <td>1.0</td>
-      <td>4.0</td>
-      <td>...</td>
-      <td>1.0</td>
-      <td>1.0</td>
-      <td>3.0</td>
-      <td>2.0</td>
-      <td>3.0</td>
-      <td>6.0</td>
-      <td>6.0</td>
-      <td>4.0</td>
-      <td>6.0</td>
-      <td>1</td>
+      <th>158</th>
+      <td>158.0</td>
+      <td>0.01</td>
+      <td>50.0</td>
+      <td>0.685820</td>
+      <td>0.586357</td>
+      <td>0.676589</td>
+      <td>1.272177</td>
+    </tr>
+    <tr>
+      <th>126</th>
+      <td>126.0</td>
+      <td>0.10</td>
+      <td>40.0</td>
+      <td>0.691166</td>
+      <td>0.580552</td>
+      <td>0.680900</td>
+      <td>1.271717</td>
+    </tr>
+    <tr>
+      <th>162</th>
+      <td>162.0</td>
+      <td>0.04</td>
+      <td>50.0</td>
+      <td>0.692056</td>
+      <td>0.579100</td>
+      <td>0.681573</td>
+      <td>1.271157</td>
+    </tr>
+    <tr>
+      <th>124</th>
+      <td>124.0</td>
+      <td>0.04</td>
+      <td>40.0</td>
+      <td>0.691759</td>
+      <td>0.579100</td>
+      <td>0.681304</td>
+      <td>1.270860</td>
+    </tr>
+    <tr>
+      <th>161</th>
+      <td>161.0</td>
+      <td>0.03</td>
+      <td>50.0</td>
+      <td>0.689829</td>
+      <td>0.580552</td>
+      <td>0.679688</td>
+      <td>1.270381</td>
+    </tr>
+    <tr>
+      <th>141</th>
+      <td>141.0</td>
+      <td>0.02</td>
+      <td>45.0</td>
+      <td>0.691463</td>
+      <td>0.577649</td>
+      <td>0.680900</td>
+      <td>1.269111</td>
     </tr>
   </tbody>
 </table>
-<p>5 rows × 1803 columns</p>
 </div>
 </div>
 
@@ -2326,10 +2293,287 @@ PwGvFHOcE6L73gAAAABJRU5ErkJggg==
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
+<div class="prompt input_prompt">In&nbsp;[24]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># Logistic with l2 penalty</span>
+<span class="n">tune_params_l2</span><span class="p">[</span><span class="s1">&#39;sum&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">tune_params_l1</span><span class="p">[</span><span class="s1">&#39;class0&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="n">tune_params_l1</span><span class="p">[</span><span class="s1">&#39;class1&#39;</span><span class="p">]</span>
+<span class="n">tune_params_l2</span><span class="o">.</span><span class="n">sort_values</span><span class="p">([</span><span class="s1">&#39;sum&#39;</span><span class="p">],</span> <span class="n">ascending</span><span class="o">=</span><span class="p">[</span><span class="bp">False</span><span class="p">])</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[24]:</div>
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>x_index</th>
+      <th>C</th>
+      <th>NOF</th>
+      <th>class0</th>
+      <th>class1</th>
+      <th>overall</th>
+      <th>sum</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>123</th>
+      <td>123.0</td>
+      <td>0.03</td>
+      <td>40.0</td>
+      <td>0.690572</td>
+      <td>0.580552</td>
+      <td>0.680361</td>
+      <td>1.273762</td>
+    </tr>
+    <tr>
+      <th>143</th>
+      <td>143.0</td>
+      <td>0.04</td>
+      <td>45.0</td>
+      <td>0.695026</td>
+      <td>0.567489</td>
+      <td>0.683190</td>
+      <td>1.272756</td>
+    </tr>
+    <tr>
+      <th>125</th>
+      <td>125.0</td>
+      <td>0.08</td>
+      <td>40.0</td>
+      <td>0.689532</td>
+      <td>0.579100</td>
+      <td>0.679283</td>
+      <td>1.272459</td>
+    </tr>
+    <tr>
+      <th>142</th>
+      <td>142.0</td>
+      <td>0.03</td>
+      <td>45.0</td>
+      <td>0.695026</td>
+      <td>0.568940</td>
+      <td>0.683324</td>
+      <td>1.272311</td>
+    </tr>
+    <tr>
+      <th>158</th>
+      <td>158.0</td>
+      <td>0.01</td>
+      <td>50.0</td>
+      <td>0.692650</td>
+      <td>0.570392</td>
+      <td>0.681304</td>
+      <td>1.272177</td>
+    </tr>
+    <tr>
+      <th>126</th>
+      <td>126.0</td>
+      <td>0.10</td>
+      <td>40.0</td>
+      <td>0.689978</td>
+      <td>0.579100</td>
+      <td>0.679688</td>
+      <td>1.271717</td>
+    </tr>
+    <tr>
+      <th>162</th>
+      <td>162.0</td>
+      <td>0.04</td>
+      <td>50.0</td>
+      <td>0.692650</td>
+      <td>0.568940</td>
+      <td>0.681169</td>
+      <td>1.271157</td>
+    </tr>
+    <tr>
+      <th>124</th>
+      <td>124.0</td>
+      <td>0.04</td>
+      <td>40.0</td>
+      <td>0.689978</td>
+      <td>0.580552</td>
+      <td>0.679822</td>
+      <td>1.270860</td>
+    </tr>
+    <tr>
+      <th>161</th>
+      <td>161.0</td>
+      <td>0.03</td>
+      <td>50.0</td>
+      <td>0.693244</td>
+      <td>0.568940</td>
+      <td>0.681708</td>
+      <td>1.270381</td>
+    </tr>
+    <tr>
+      <th>141</th>
+      <td>141.0</td>
+      <td>0.02</td>
+      <td>45.0</td>
+      <td>0.695471</td>
+      <td>0.567489</td>
+      <td>0.683594</td>
+      <td>1.269111</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h5 id="Support-Vector-Classification-Model-Tuning">Support Vector Classification Model Tuning<a class="anchor-link" href="#Support-Vector-Classification-Model-Tuning">&#182;</a></h5>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[25]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># Split data for all features</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">ncds_data_no_indicators</span><span class="o">.</span><span class="n">values</span><span class="p">[:,</span> <span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">ncds_data_no_indicators</span><span class="o">.</span><span class="n">values</span><span class="p">[:,</span> <span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">x_train</span><span class="p">,</span> <span class="n">x_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.4</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+
+<span class="c1"># SVC</span>
+<span class="n">svc</span> <span class="o">=</span> <span class="n">SVC</span><span class="p">(</span><span class="n">probability</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span><span class="n">class_weight</span><span class="o">=</span><span class="s1">&#39;balanced&#39;</span><span class="p">)</span>
+<span class="n">svc</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">x_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+<span class="n">svc_scores</span> <span class="o">=</span> <span class="n">score</span><span class="p">(</span><span class="n">svc</span><span class="p">,</span> <span class="n">x_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)</span>
+
+<span class="k">print</span> <span class="s2">&quot;SVC:&quot;</span>
+<span class="k">print</span> <span class="n">svc_scores</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>SVC:
+overall accuracy       0.907193
+accuracy on class 0    1.000000
+accuracy on class 1    0.000000
+dtype: float64
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h5 id="Random-Forest-Model-Tuning">Random Forest Model Tuning<a class="anchor-link" href="#Random-Forest-Model-Tuning">&#182;</a></h5>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[43]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># Split data for all features</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">ncds_data_no_indicators</span><span class="o">.</span><span class="n">values</span><span class="p">[:,</span> <span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">ncds_data_no_indicators</span><span class="o">.</span><span class="n">values</span><span class="p">[:,</span> <span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">x_train</span><span class="p">,</span> <span class="n">x_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.4</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+
+<span class="c1"># Random Forest</span>
+<span class="c1"># rf = RandomForest(class_weight=&#39;balanced&#39;)</span>
+<span class="c1"># rf.fit(x_train, y_train)</span>
+<span class="c1"># rf_scores = score(rf, x_test, y_test)</span>
+
+<span class="n">rf</span> <span class="o">=</span> <span class="n">RandomForest</span><span class="p">(</span><span class="n">n_estimators</span><span class="o">=</span><span class="mi">600</span><span class="p">,</span><span class="n">class_weight</span><span class="o">=</span><span class="s1">&#39;balanced&#39;</span><span class="p">,</span><span class="n">oob_score</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span><span class="n">max_depth</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span><span class="n">criterion</span><span class="o">=</span><span class="s1">&#39;gini&#39;</span><span class="p">,</span><span class="n">min_samples_leaf</span><span class="o">=</span><span class="mi">150</span><span class="p">)</span>
+<span class="n">rf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">x_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+<span class="n">rf_scores</span> <span class="o">=</span> <span class="n">score</span><span class="p">(</span><span class="n">rf</span><span class="p">,</span> <span class="n">x_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)</span>
+<span class="k">print</span> <span class="s2">&quot;RF 1: &quot;</span> <span class="p">,</span> <span class="s2">&quot;Accuracy Class 1:&quot;</span> <span class="p">,</span> <span class="n">rf_scores</span><span class="p">[</span><span class="s1">&#39;accuracy on class 1&#39;</span><span class="p">]</span> <span class="p">,</span> <span class="s2">&quot; Class 0:&quot;</span> <span class="p">,</span> <span class="n">rf_scores</span><span class="p">[</span><span class="s1">&#39;accuracy on class 0&#39;</span><span class="p">]</span>
+
+<span class="n">rf</span> <span class="o">=</span> <span class="n">RandomForest</span><span class="p">(</span><span class="n">n_estimators</span><span class="o">=</span><span class="mi">600</span><span class="p">,</span><span class="n">class_weight</span><span class="o">=</span><span class="s1">&#39;balanced&#39;</span><span class="p">,</span><span class="n">oob_score</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span><span class="n">max_depth</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span><span class="n">criterion</span><span class="o">=</span><span class="s1">&#39;gini&#39;</span><span class="p">,</span><span class="n">min_samples_leaf</span><span class="o">=</span><span class="mi">150</span><span class="p">)</span>
+<span class="n">rf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">x_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+<span class="n">rf_scores</span> <span class="o">=</span> <span class="n">score</span><span class="p">(</span><span class="n">rf</span><span class="p">,</span> <span class="n">x_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)</span>
+<span class="k">print</span> <span class="s2">&quot;RF 2: &quot;</span> <span class="p">,</span> <span class="s2">&quot;Accuracy Class 1:&quot;</span> <span class="p">,</span> <span class="n">rf_scores</span><span class="p">[</span><span class="s1">&#39;accuracy on class 1&#39;</span><span class="p">]</span> <span class="p">,</span> <span class="s2">&quot; Class 0:&quot;</span> <span class="p">,</span> <span class="n">rf_scores</span><span class="p">[</span><span class="s1">&#39;accuracy on class 0&#39;</span><span class="p">]</span>
+
+<span class="n">rf</span> <span class="o">=</span> <span class="n">RandomForest</span><span class="p">(</span><span class="n">n_estimators</span><span class="o">=</span><span class="mi">600</span><span class="p">,</span><span class="n">class_weight</span><span class="o">=</span><span class="s1">&#39;balanced&#39;</span><span class="p">,</span><span class="n">oob_score</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span><span class="n">max_depth</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span><span class="n">criterion</span><span class="o">=</span><span class="s1">&#39;gini&#39;</span><span class="p">,</span><span class="n">min_samples_leaf</span><span class="o">=</span><span class="mi">150</span><span class="p">)</span>
+<span class="n">rf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">x_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+<span class="n">rf_scores</span> <span class="o">=</span> <span class="n">score</span><span class="p">(</span><span class="n">rf</span><span class="p">,</span> <span class="n">x_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)</span>
+<span class="k">print</span> <span class="s2">&quot;RF 3: &quot;</span> <span class="p">,</span> <span class="s2">&quot;Accuracy Class 1:&quot;</span> <span class="p">,</span> <span class="n">rf_scores</span><span class="p">[</span><span class="s1">&#39;accuracy on class 1&#39;</span><span class="p">]</span> <span class="p">,</span> <span class="s2">&quot; Class 0:&quot;</span> <span class="p">,</span> <span class="n">rf_scores</span><span class="p">[</span><span class="s1">&#39;accuracy on class 0&#39;</span><span class="p">]</span>
+
+<span class="n">rf</span> <span class="o">=</span> <span class="n">RandomForest</span><span class="p">(</span><span class="n">n_estimators</span><span class="o">=</span><span class="mi">600</span><span class="p">,</span><span class="n">class_weight</span><span class="o">=</span><span class="s1">&#39;balanced&#39;</span><span class="p">,</span><span class="n">oob_score</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span><span class="n">max_depth</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span><span class="n">criterion</span><span class="o">=</span><span class="s1">&#39;gini&#39;</span><span class="p">,</span><span class="n">min_samples_leaf</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
+<span class="n">rf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">x_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+<span class="n">rf_scores</span> <span class="o">=</span> <span class="n">score</span><span class="p">(</span><span class="n">rf</span><span class="p">,</span> <span class="n">x_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)</span>
+<span class="k">print</span> <span class="s2">&quot;RF 4: &quot;</span> <span class="p">,</span> <span class="s2">&quot;Accuracy Class 1:&quot;</span> <span class="p">,</span> <span class="n">rf_scores</span><span class="p">[</span><span class="s1">&#39;accuracy on class 1&#39;</span><span class="p">]</span> <span class="p">,</span> <span class="s2">&quot; Class 0:&quot;</span> <span class="p">,</span> <span class="n">rf_scores</span><span class="p">[</span><span class="s1">&#39;accuracy on class 0&#39;</span><span class="p">]</span>
+
+<span class="n">rf</span> <span class="o">=</span> <span class="n">RandomForest</span><span class="p">(</span><span class="n">n_estimators</span><span class="o">=</span><span class="mi">600</span><span class="p">,</span><span class="n">class_weight</span><span class="o">=</span><span class="s1">&#39;balanced&#39;</span><span class="p">,</span><span class="n">oob_score</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span><span class="n">max_depth</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span><span class="n">criterion</span><span class="o">=</span><span class="s1">&#39;gini&#39;</span><span class="p">,</span><span class="n">min_samples_leaf</span><span class="o">=</span><span class="mi">300</span><span class="p">)</span>
+<span class="n">rf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">x_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+<span class="n">rf_scores</span> <span class="o">=</span> <span class="n">score</span><span class="p">(</span><span class="n">rf</span><span class="p">,</span> <span class="n">x_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)</span>
+<span class="k">print</span> <span class="s2">&quot;RF 5: &quot;</span> <span class="p">,</span> <span class="s2">&quot;Accuracy Class 1:&quot;</span> <span class="p">,</span> <span class="n">rf_scores</span><span class="p">[</span><span class="s1">&#39;accuracy on class 1&#39;</span><span class="p">]</span> <span class="p">,</span> <span class="s2">&quot; Class 0:&quot;</span> <span class="p">,</span> <span class="n">rf_scores</span><span class="p">[</span><span class="s1">&#39;accuracy on class 0&#39;</span><span class="p">]</span>
+
+<span class="n">rf</span> <span class="o">=</span> <span class="n">RandomForest</span><span class="p">(</span><span class="n">n_estimators</span><span class="o">=</span><span class="mi">600</span><span class="p">,</span><span class="n">class_weight</span><span class="o">=</span><span class="s1">&#39;balanced&#39;</span><span class="p">,</span><span class="n">oob_score</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span><span class="n">max_depth</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span><span class="n">criterion</span><span class="o">=</span><span class="s1">&#39;gini&#39;</span><span class="p">,</span><span class="n">min_samples_leaf</span><span class="o">=</span><span class="mi">500</span><span class="p">)</span>
+<span class="n">rf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">x_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+<span class="n">rf_scores</span> <span class="o">=</span> <span class="n">score</span><span class="p">(</span><span class="n">rf</span><span class="p">,</span> <span class="n">x_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)</span>
+<span class="k">print</span> <span class="s2">&quot;RF 6: &quot;</span> <span class="p">,</span> <span class="s2">&quot;Accuracy Class 1:&quot;</span> <span class="p">,</span> <span class="n">rf_scores</span><span class="p">[</span><span class="s1">&#39;accuracy on class 1&#39;</span><span class="p">]</span> <span class="p">,</span> <span class="s2">&quot; Class 0:&quot;</span> <span class="p">,</span> <span class="n">rf_scores</span><span class="p">[</span><span class="s1">&#39;accuracy on class 0&#39;</span><span class="p">]</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>RF 1:  Accuracy Class 1: 0.685050798258  Class 0: 0.789903489235
+RF 2:  Accuracy Class 1: 0.680696661829  Class 0: 0.785300668151
+RF 3:  Accuracy Class 1: 0.676342525399  Class 0: 0.799257609503
+RF 4:  Accuracy Class 1: 0.680696661829  Class 0: 0.746844840386
+RF 5:  Accuracy Class 1: 0.708272859216  Class 0: 0.681959910913
+RF 6:  Accuracy Class 1: 0.725689404935  Class 0: 0.601187824796
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 <div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span> 
+<div class=" highlight hl-ipython2"><pre><span></span>
 </pre></div>
 
 </div>
