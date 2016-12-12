@@ -1,7 +1,7 @@
 
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[2]:</div>
+<div class="prompt input_prompt">In&nbsp;[1]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1">###Hide</span>
@@ -86,7 +86,7 @@
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[3]:</div>
+<div class="prompt input_prompt">In&nbsp;[2]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1">#Load and inspect the ncds data</span>
@@ -111,7 +111,7 @@
 </div>
 </div>
 
-<div class="output_area"><div class="prompt output_prompt">Out[3]:</div>
+<div class="output_area"><div class="prompt output_prompt">Out[2]:</div>
 
 <div class="output_html rendered_html output_subarea output_execute_result">
 <div>
@@ -277,7 +277,7 @@
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[4]:</div>
+<div class="prompt input_prompt">In&nbsp;[3]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1">#Load and inspect the pms additions data</span>
@@ -302,7 +302,7 @@
 </div>
 </div>
 
-<div class="output_area"><div class="prompt output_prompt">Out[4]:</div>
+<div class="output_area"><div class="prompt output_prompt">Out[3]:</div>
 
 <div class="output_html rendered_html output_subarea output_execute_result">
 <div>
@@ -468,7 +468,7 @@
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[5]:</div>
+<div class="prompt input_prompt">In&nbsp;[4]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1">#Load and inspect the response data</span>
@@ -493,7 +493,7 @@
 </div>
 </div>
 
-<div class="output_area"><div class="prompt output_prompt">Out[5]:</div>
+<div class="output_area"><div class="prompt output_prompt">Out[4]:</div>
 
 <div class="output_html rendered_html output_subarea output_execute_result">
 <div>
@@ -650,7 +650,7 @@
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[6]:</div>
+<div class="prompt input_prompt">In&nbsp;[5]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># Join datasets</span>
@@ -680,7 +680,7 @@
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[7]:</div>
+<div class="prompt input_prompt">In&nbsp;[24]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1">#Hide</span>
@@ -705,13 +705,31 @@
 
 
 <span class="k">def</span> <span class="nf">columns_with_null</span><span class="p">(</span><span class="n">df</span><span class="p">):</span>
+    <span class="n">count</span> <span class="o">=</span> <span class="mi">0</span>
     <span class="k">for</span> <span class="n">column</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
         <span class="n">df_missing</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="n">column</span><span class="p">]</span><span class="o">.</span><span class="n">isnull</span><span class="p">()]</span>
-        <span class="n">count</span> <span class="o">=</span> <span class="mi">0</span>
         <span class="k">if</span> <span class="n">df_missing</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
             <span class="k">print</span> <span class="s2">&quot;Predictor &quot;</span> <span class="p">,</span> <span class="n">column</span><span class="p">,</span> <span class="s2">&quot; contain null values / Count = &quot;</span> <span class="p">,</span><span class="n">df_missing</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
             <span class="n">count</span> <span class="o">=</span> <span class="n">count</span> <span class="o">+</span><span class="mi">1</span>
     <span class="k">print</span> <span class="s2">&quot;Total number of columns with null:&quot;</span><span class="p">,</span><span class="n">count</span>
+
+<span class="k">def</span> <span class="nf">find_columns_with_nulls</span><span class="p">(</span><span class="n">df</span><span class="p">):</span>
+    <span class="n">columns</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">column</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
+        <span class="n">df_missing</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="n">column</span><span class="p">]</span><span class="o">.</span><span class="n">isnull</span><span class="p">()]</span>
+        <span class="k">if</span> <span class="n">df_missing</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">columns</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">column</span><span class="p">)</span>
+    
+    <span class="k">return</span> <span class="n">columns</span>
+
+<span class="k">def</span> <span class="nf">find_columns_without_nulls</span><span class="p">(</span><span class="n">df</span><span class="p">):</span>
+    <span class="n">columns</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">column</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
+        <span class="n">df_missing</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="n">column</span><span class="p">]</span><span class="o">.</span><span class="n">isnull</span><span class="p">()]</span>
+        <span class="k">if</span> <span class="n">df_missing</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">columns</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">column</span><span class="p">)</span>
+    
+    <span class="k">return</span> <span class="n">columns</span>
 </pre></div>
 
 </div>
@@ -738,7 +756,8 @@
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h5 id="Data-Analysis-/-Exploration">Data Analysis / Exploration<a class="anchor-link" href="#Data-Analysis-/-Exploration">&#182;</a></h5>
+<h5 id="Data-Analysis-/-Exploration">Data Analysis / Exploration<a class="anchor-link" href="#Data-Analysis-/-Exploration">&#182;</a></h5><p>Most of our exploration was done in the data exploration step of our project. The details of the tasks we performed can be viewed <a href="20_exploratory_data_analysis_02.ipynb">here</a>.</p>
+
 </div>
 </div>
 </div>
@@ -757,6 +776,508 @@
 </div>
 </div>
 </div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[19]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="c1">### Utility methods for data scrubbing</span>
+
+<span class="c1"># Remove spaces from data</span>
+<span class="k">def</span> <span class="nf">convert_spaces_to_null</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">replace</span><span class="p">([</span><span class="s1">&#39; &#39;</span><span class="p">],[</span><span class="bp">None</span><span class="p">])</span> 
+    <span class="k">return</span> <span class="n">data</span>
+
+<span class="c1"># Fill empty columns using median for the column</span>
+<span class="k">def</span> <span class="nf">fill_with_median</span><span class="p">(</span><span class="n">x_fill</span><span class="p">):</span>
+    <span class="n">x_fill</span> <span class="o">=</span> <span class="n">x_fill</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">x_fill</span><span class="o">.</span><span class="n">columns</span><span class="p">,</span> <span class="n">axis</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">median</span><span class="p">()))</span>
+    <span class="k">return</span> <span class="n">x_fill</span>
+
+<span class="c1"># Fill empty columns using mean for the column</span>
+<span class="k">def</span> <span class="nf">fill_with_mean</span><span class="p">(</span><span class="n">x_fill</span><span class="p">):</span>
+    <span class="n">x_fill</span> <span class="o">=</span> <span class="n">x_fill</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">x_fill</span><span class="o">.</span><span class="n">columns</span><span class="p">,</span> <span class="n">axis</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">mean</span><span class="p">()))</span>
+    <span class="k">return</span> <span class="n">x_fill</span>
+
+<span class="c1"># Fill empty columns using KNN</span>
+<span class="k">def</span> <span class="nf">fill_with_knn</span><span class="p">(</span><span class="n">x_fill</span><span class="p">,</span><span class="n">k</span><span class="p">,</span><span class="n">features</span><span class="p">,</span><span class="n">response</span><span class="p">):</span>
+    <span class="n">model</span> <span class="o">=</span> <span class="n">KNN</span><span class="p">(</span><span class="n">n_neighbors</span><span class="o">=</span><span class="n">k</span><span class="p">)</span>
+    <span class="n">df_missing</span> <span class="o">=</span> <span class="n">x_fill</span><span class="p">[</span><span class="n">x_fill</span><span class="p">[</span><span class="n">response</span><span class="p">]</span><span class="o">.</span><span class="n">isnull</span><span class="p">()]</span>
+    <span class="n">df_filled</span> <span class="o">=</span> <span class="n">x_fill</span><span class="p">[</span><span class="o">~</span><span class="n">x_fill</span><span class="p">[</span><span class="n">response</span><span class="p">]</span><span class="o">.</span><span class="n">isnull</span><span class="p">()]</span>
+    <span class="n">df_predict</span> <span class="o">=</span> <span class="n">df_missing</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">df_filled</span><span class="p">[</span><span class="n">features</span><span class="p">],</span><span class="n">df_filled</span><span class="p">[</span><span class="n">response</span><span class="p">])</span>
+        <span class="n">df_predict</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="n">response</span><span class="p">]</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">df_missing</span><span class="p">[</span><span class="n">features</span><span class="p">])</span>
+        <span class="n">df_final</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">df_filled</span><span class="p">,</span> <span class="n">df_predict</span><span class="p">])</span>
+    <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+        <span class="n">df_predict</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="n">response</span><span class="p">]</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="n">df_final</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">df_filled</span><span class="p">,</span> <span class="n">df_predict</span><span class="p">])</span>
+    <span class="k">return</span> <span class="n">df_final</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>First let is creata copy of the data and remove duplicate columns that were created when we merged the three datasets. Also from our data exploration step we found that the data with balnsk ave space and we need to convert them to nulls so it is easier to handle null checking in python. Then we need to convert all the column types to float type.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[12]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># Make a copy</span>
+<span class="n">ncds_data_clean</span> <span class="o">=</span> <span class="n">ncds_merged_data</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span> 
+
+<span class="c1"># drop the ID columns</span>
+<span class="n">ncds_data_clean</span> <span class="o">=</span>  <span class="n">ncds_data_clean</span><span class="o">.</span><span class="n">drop</span><span class="p">([</span><span class="s2">&quot;ncdsid&quot;</span><span class="p">,</span><span class="s2">&quot;NCDSID_x&quot;</span><span class="p">,</span><span class="s2">&quot;NCDSID_y&quot;</span><span class="p">],</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="c1"># Drop other duplicate columns</span>
+<span class="n">ncds_data_clean</span> <span class="o">=</span>  <span class="n">ncds_data_clean</span><span class="o">.</span><span class="n">drop</span><span class="p">([</span><span class="s2">&quot;N622_x&quot;</span><span class="p">,</span><span class="s2">&quot;BSTATUS_x&quot;</span><span class="p">],</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+
+<span class="c1"># Convert spaces in the data to nulls</span>
+<span class="n">ncds_data_clean</span> <span class="o">=</span> <span class="n">convert_spaces_to_null</span><span class="p">(</span><span class="n">ncds_data_clean</span><span class="p">)</span>
+
+<span class="c1"># Convert all columns to float</span>
+<span class="k">for</span> <span class="n">column</span> <span class="ow">in</span> <span class="n">ncds_data_clean</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
+    <span class="n">ncds_data_clean</span><span class="p">[</span><span class="n">column</span><span class="p">]</span> <span class="o">=</span> <span class="n">ncds_data_clean</span><span class="p">[</span><span class="n">column</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The pms file ncds_pms_additionals has 16990 cases only, so we need to impute the columns to fill the null values.</p>
+<p>The details on what we chose as the default value for each feature is listed here:</p>
+<ul>
+<li><strong>POD</strong>    , Label : Q6:Place of Delivery , Default Value = 5.0    , Label : Elsewhere      </li>
+<li><strong>BOOKING</strong>    , Label : Q26b: Booking In place  , Default Value = 3.0    , Label : Other place    </li>
+<li><strong>PLANC</strong>    , Label : Q21b: Place of Antenatal care , Default Value = -8.0    , Label : No information </li>
+<li><strong>DIASTOL</strong>    , Label : Q29a: Diastolic Blood Pressure , Default Value = -2.0    , Label : Not applicable </li>
+<li><strong>MAXDBP</strong>    , Label : Q29b: Maximum Diatolic Blood Pressure , Default Value = -8.0    , Label : No information </li>
+<li><strong>ALBECL</strong>    , Label : Q31: Albuminuria and Eclampsia , Default Value = -8.0    , Label : No information </li>
+<li><strong>XRAY</strong>    , Label : Q36: X-Ray given , Default Value = -8.0    , Label : No information </li>
+<li><strong>ABNORM0X</strong>    , Label : Q37: Obstetric, pregnancy abnormality - No information , Default Value = -2.0    , Label : Not applicable </li>
+<li><strong>ABNORM00</strong>    , Label : Q37: No Obstetric, pregnancy abnormality , Default Value = -2.0    , Label : Not applicable </li>
+<li><strong>ABNORM01</strong>    , Label : Q37: Obstetric, pregnancy abnormality - Diabetes , Default Value = -2.0    , Label : Not applicable </li>
+<li><strong>ABNORM02</strong>    , Label : Q37: Obstetric, pregnancy abnormality - Heart , Default Value = -2.0    , Label : Not applicable </li>
+<li><strong>ABNORM03</strong>    , Label : Q37: Obstetric, pregnancy abnormality - Active TB , Default Value = -2.0    , Label : Not applicable </li>
+<li><strong>ABNORM04</strong>    , Label : Q37: Obstetric, pregnancy abnormality - influenza , Default Value = -2.0    , Label : Not applicable </li>
+<li><strong>ABNORM05</strong>    , Label : Q37: Obstetric, pregnancy abnormality - German Measles , Default Value = -2.0    , Label : Not applicable </li>
+<li><strong>ABNORM06</strong>    , Label : Q37: Obstetric, pregnancy abnormality - Disproportion , Default Value = -2.0    , Label : Not applicable </li>
+<li><strong>ABNORM07</strong>    , Label : Q37: Obstetric, pregnancy abnormality - External version , Default Value = -2.0    , Label : Not applicable </li>
+<li><strong>ABNORM08</strong>    , Label : Q37: Obstetric, pregnancy abnormality - Epilepsy , Default Value = -2.0    , Label : Not applicable </li>
+<li><strong>ABNORM09</strong>    , Label : Q37: Obstetric, pregnancy abnormality - Other , Default Value = -2.0    , Label : Not applicable </li>
+<li><strong>BLEED</strong>    , Label : Q37: Bleeding in Pregnancy and before delivery  , Default Value = -1.0    , Label : No information </li>
+<li><strong>AD2HOSP</strong>    , Label : Q38a: Admission to hospital , Default Value = -1.0    , Label : No information </li>
+<li><strong>ADTYPE</strong>    , Label : Q39: Type of Labour or Delivery Admission (Hospital) , Default Value = -1.0    , Label : No information </li>
+<li><strong>PRESENT</strong>    , Label : Q44: Presenting Part , Default Value = -1.0    , Label : No information </li>
+<li><strong>LDRUG00</strong>    , Label : Q49a: No drugs of this type , Default Value = -2.0    , Label : Not applicable </li>
+<li><strong>LDRUG01</strong>    , Label : Q49a: Chloral, Welldorm  , Default Value = -2.0    , Label : Not applicable </li>
+<li><strong>LDRUG02</strong>    , Label : Q49a: Barbiturate , Default Value = -2.0    , Label : Not applicable </li>
+<li><strong>LDRUG03</strong>    , Label : Q49a: Heroin , Default Value = -2.0    , Label : Not applicable </li>
+<li><strong>LDRUG04</strong>    , Label : Q49a: Largactil (chlorpomazine) , Default Value = -2.0    , Label : Not applicable </li>
+<li><strong>LDRUG05</strong>    , Label : Q49a: Sparine (promazine) , Default Value = -2.0    , Label : Not applicable </li>
+<li><strong>LDRUG06</strong>    , Label : Q49a: Phenergan (promethazine) , Default Value = -2.0    , Label : Not applicable </li>
+<li><strong>LDRUG07</strong>    , Label : Q49a: Doriden  , Default Value = -2.0    , Label : Not applicable </li>
+<li><strong>LDRUG08</strong>    , Label : Q49a: Oblivon , Default Value = -2.0    , Label : Not applicable </li>
+<li><strong>LDRUG09</strong>    , Label : Q49a: Other   , Default Value = -2.0    , Label : Not applicable </li>
+<li><strong>ATHETIC</strong>    , Label : Q50: Anaesthetic , Default Value = 9.0    , Label : No information </li>
+<li><strong>RESUS</strong>    , Label : Q55: Resuscitation   , Default Value = -2.0    , Label : Not applicable </li>
+<li><strong>DTB1</strong>    , Label : Q56: Drugs to baby (None)  , Default Value = -2.0    , Label : Not applicable </li>
+<li><strong>DTB2</strong>    , Label : Q56: Drugs to baby (Coranine) , Default Value = -2.0    , Label : Not applicable </li>
+<li><strong>DTB3</strong>    , Label : Q56: Drugs to baby (Lobeline) , Default Value = -2.0    , Label : Not applicable </li>
+<li><strong>DTB4</strong>    , Label : Q56: Drugs to baby (Sedatives) , Default Value = -2.0    , Label : Not applicable </li>
+<li><strong>DTB5</strong>    , Label : Q56: Drugs to baby (Antagonists, nalorphine, levalorfan) , Default Value = -2.0    , Label : Not applicable </li>
+<li><strong>DTB6</strong>    , Label : Q56: Drugs to baby (Synkavit, Vikastab)  , Default Value = -2.0    , Label : Not applicable </li>
+<li><strong>DTB7</strong>    , Label : Q56: Drugs to baby (Sulphonamides)  , Default Value = -2.0    , Label : Not applicable </li>
+<li><strong>DTB8</strong>    , Label : Q56: Drugs to baby (Penicilin) , Default Value = -2.0    , Label : Not applicable </li>
+<li><strong>DTB9</strong>    , Label : Q56: Drugs to baby (Streptomycin)    , Default Value = -2.0    , Label : Not applicable </li>
+<li><strong>DTB10</strong>    , Label : Q56: Drugs to baby (Other antibiotics) , Default Value = -2.0    , Label : Not applicable </li>
+<li><strong>ILLNESS</strong>    , Label : Q59: Baby's Illness  , Default Value = -1.0    , Label : No information </li>
+<li><strong>MOD</strong>    , Label : Q61: Month of Death  , Default Value = 0.0    , Label : Survivor (livebirth /lived)    </li>
+<li><strong>TOD</strong>    , Label : Q61: Time of death  , Default Value = -1.0    , Label : Not applicable </li>
+<li><strong>AAD</strong>    , Label : Q61: Age at Death  , Default Value = -1.0    , Label : Not applicable </li>
+<li><strong>SBNND</strong>    , Label : Q61: Still Birth or Neo-natal Death (Dervied)  , Default Value = -1.0    , Label : Survivor       </li>
+<li><strong>PLCWGT</strong>    , Label : Placental Weight , Default Value = -2.0    , Label : Not applicable </li>
+<li><strong>TABLE62</strong>    , Label : Time of death for still births and neonatal deaths (Table 62) , Default Value = -1.0    , Label : Not applicable </li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[13]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="c1">### method to fill nulls in the pms dataset</span>
+<span class="k">def</span> <span class="nf">fill_pms_columns</span><span class="p">(</span><span class="n">x_fill</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">x_fill</span><span class="o">.</span><span class="n">iterrows</span><span class="p">():</span>
+        <span class="c1"># Q6:Place of Delivery  </span>
+        <span class="k">if</span> <span class="n">pd</span><span class="o">.</span><span class="n">isnull</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s2">&quot;POD&quot;</span><span class="p">]):</span>
+            <span class="n">x_fill</span><span class="o">.</span><span class="n">set_value</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="s1">&#39;POD&#39;</span><span class="p">,</span> <span class="mf">5.0</span><span class="p">)</span>
+        <span class="c1"># Q26b: Booking In place  </span>
+        <span class="k">if</span> <span class="n">pd</span><span class="o">.</span><span class="n">isnull</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s2">&quot;BOOKING&quot;</span><span class="p">]):</span>
+            <span class="n">x_fill</span><span class="o">.</span><span class="n">set_value</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="s1">&#39;BOOKING&#39;</span><span class="p">,</span> <span class="mf">3.0</span><span class="p">)</span>
+        <span class="c1"># Q21b: Place of Antenatal care  </span>
+        <span class="k">if</span> <span class="n">pd</span><span class="o">.</span><span class="n">isnull</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s2">&quot;PLANC&quot;</span><span class="p">]):</span>
+            <span class="n">x_fill</span><span class="o">.</span><span class="n">set_value</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="s1">&#39;PLANC&#39;</span><span class="p">,</span> <span class="o">-</span><span class="mf">8.0</span><span class="p">)</span>
+        <span class="c1"># Q29a: Diastolic Blood Pressure  </span>
+        <span class="k">if</span> <span class="n">pd</span><span class="o">.</span><span class="n">isnull</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s2">&quot;DIASTOL&quot;</span><span class="p">]):</span>
+            <span class="n">x_fill</span><span class="o">.</span><span class="n">set_value</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="s1">&#39;DIASTOL&#39;</span><span class="p">,</span> <span class="o">-</span><span class="mf">2.0</span><span class="p">)</span>
+        <span class="c1"># Q29b: Maximum Diatolic Blood Pressure </span>
+        <span class="k">if</span> <span class="n">pd</span><span class="o">.</span><span class="n">isnull</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s2">&quot;MAXDBP&quot;</span><span class="p">]):</span>
+            <span class="n">x_fill</span><span class="o">.</span><span class="n">set_value</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="s1">&#39;MAXDBP&#39;</span><span class="p">,</span> <span class="o">-</span><span class="mf">2.0</span><span class="p">)</span>
+        <span class="c1"># Q31: Albuminuria and Eclampsia</span>
+        <span class="k">if</span> <span class="n">pd</span><span class="o">.</span><span class="n">isnull</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s2">&quot;ALBECL&quot;</span><span class="p">]):</span>
+            <span class="n">x_fill</span><span class="o">.</span><span class="n">set_value</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="s1">&#39;ALBECL&#39;</span><span class="p">,</span> <span class="o">-</span><span class="mf">8.0</span><span class="p">)</span>
+        <span class="c1"># Q36: X-Ray given</span>
+        <span class="k">if</span> <span class="n">pd</span><span class="o">.</span><span class="n">isnull</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s2">&quot;XRAY&quot;</span><span class="p">]):</span>
+            <span class="n">x_fill</span><span class="o">.</span><span class="n">set_value</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="s1">&#39;XRAY&#39;</span><span class="p">,</span> <span class="o">-</span><span class="mf">8.0</span><span class="p">)</span>
+        <span class="c1"># Q37: Obstetric, pregnancy abnormality - No information</span>
+        <span class="k">if</span> <span class="n">pd</span><span class="o">.</span><span class="n">isnull</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s2">&quot;ABNORM0X&quot;</span><span class="p">]):</span>
+            <span class="n">x_fill</span><span class="o">.</span><span class="n">set_value</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="s1">&#39;ABNORM0X&#39;</span><span class="p">,</span> <span class="o">-</span><span class="mf">2.0</span><span class="p">)</span>
+        <span class="c1"># Q37: No Obstetric, pregnancy abnormality</span>
+        <span class="k">if</span> <span class="n">pd</span><span class="o">.</span><span class="n">isnull</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s2">&quot;ABNORM00&quot;</span><span class="p">]):</span>
+            <span class="n">x_fill</span><span class="o">.</span><span class="n">set_value</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="s1">&#39;ABNORM00&#39;</span><span class="p">,</span> <span class="o">-</span><span class="mf">2.0</span><span class="p">)</span>
+        <span class="c1"># Q37: Obstetric, pregnancy abnormality - Diabetes</span>
+        <span class="k">if</span> <span class="n">pd</span><span class="o">.</span><span class="n">isnull</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s2">&quot;ABNORM01&quot;</span><span class="p">]):</span>
+            <span class="n">x_fill</span><span class="o">.</span><span class="n">set_value</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="s1">&#39;ABNORM01&#39;</span><span class="p">,</span> <span class="o">-</span><span class="mf">2.0</span><span class="p">)</span>
+        <span class="c1"># Q37: Obstetric, pregnancy abnormality - Heart </span>
+        <span class="k">if</span> <span class="n">pd</span><span class="o">.</span><span class="n">isnull</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s2">&quot;ABNORM02&quot;</span><span class="p">]):</span>
+            <span class="n">x_fill</span><span class="o">.</span><span class="n">set_value</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="s1">&#39;ABNORM02&#39;</span><span class="p">,</span> <span class="o">-</span><span class="mf">2.0</span><span class="p">)</span>
+        <span class="c1"># Q37: Obstetric, pregnancy abnormality - Active TB </span>
+        <span class="k">if</span> <span class="n">pd</span><span class="o">.</span><span class="n">isnull</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s2">&quot;ABNORM03&quot;</span><span class="p">]):</span>
+            <span class="n">x_fill</span><span class="o">.</span><span class="n">set_value</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="s1">&#39;ABNORM03&#39;</span><span class="p">,</span> <span class="o">-</span><span class="mf">2.0</span><span class="p">)</span>
+        <span class="c1"># Q37: Obstetric, pregnancy abnormality - influenza </span>
+        <span class="k">if</span> <span class="n">pd</span><span class="o">.</span><span class="n">isnull</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s2">&quot;ABNORM04&quot;</span><span class="p">]):</span>
+            <span class="n">x_fill</span><span class="o">.</span><span class="n">set_value</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="s1">&#39;ABNORM04&#39;</span><span class="p">,</span> <span class="o">-</span><span class="mf">2.0</span><span class="p">)</span>
+        <span class="c1"># Q37: Obstetric, pregnancy abnormality - German Measles </span>
+        <span class="k">if</span> <span class="n">pd</span><span class="o">.</span><span class="n">isnull</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s2">&quot;ABNORM05&quot;</span><span class="p">]):</span>
+            <span class="n">x_fill</span><span class="o">.</span><span class="n">set_value</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="s1">&#39;ABNORM05&#39;</span><span class="p">,</span> <span class="o">-</span><span class="mf">2.0</span><span class="p">)</span>
+        <span class="c1"># Q37: Obstetric, pregnancy abnormality - Disproportion </span>
+        <span class="k">if</span> <span class="n">pd</span><span class="o">.</span><span class="n">isnull</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s2">&quot;ABNORM06&quot;</span><span class="p">]):</span>
+            <span class="n">x_fill</span><span class="o">.</span><span class="n">set_value</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="s1">&#39;ABNORM06&#39;</span><span class="p">,</span> <span class="o">-</span><span class="mf">2.0</span><span class="p">)</span>
+        <span class="c1"># Q37: Obstetric, pregnancy abnormality - External version </span>
+        <span class="k">if</span> <span class="n">pd</span><span class="o">.</span><span class="n">isnull</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s2">&quot;ABNORM07&quot;</span><span class="p">]):</span>
+            <span class="n">x_fill</span><span class="o">.</span><span class="n">set_value</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="s1">&#39;ABNORM07&#39;</span><span class="p">,</span> <span class="o">-</span><span class="mf">2.0</span><span class="p">)</span>
+        <span class="c1"># Q37: Obstetric, pregnancy abnormality - Epilepsy </span>
+        <span class="k">if</span> <span class="n">pd</span><span class="o">.</span><span class="n">isnull</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s2">&quot;ABNORM08&quot;</span><span class="p">]):</span>
+            <span class="n">x_fill</span><span class="o">.</span><span class="n">set_value</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="s1">&#39;ABNORM08&#39;</span><span class="p">,</span> <span class="o">-</span><span class="mf">2.0</span><span class="p">)</span>
+        <span class="c1"># Q37: Obstetric, pregnancy abnormality - Other </span>
+        <span class="k">if</span> <span class="n">pd</span><span class="o">.</span><span class="n">isnull</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s2">&quot;ABNORM09&quot;</span><span class="p">]):</span>
+            <span class="n">x_fill</span><span class="o">.</span><span class="n">set_value</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="s1">&#39;ABNORM09&#39;</span><span class="p">,</span> <span class="o">-</span><span class="mf">2.0</span><span class="p">)</span>
+        <span class="c1"># Q37: Bleeding in Pregnancy and before delivery </span>
+        <span class="k">if</span> <span class="n">pd</span><span class="o">.</span><span class="n">isnull</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s2">&quot;BLEED&quot;</span><span class="p">]):</span>
+            <span class="n">x_fill</span><span class="o">.</span><span class="n">set_value</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="s1">&#39;BLEED&#39;</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.0</span><span class="p">)</span>
+        <span class="c1"># Q38a: Admission to hospital  </span>
+        <span class="k">if</span> <span class="n">pd</span><span class="o">.</span><span class="n">isnull</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s2">&quot;AD2HOSP&quot;</span><span class="p">]):</span>
+            <span class="n">x_fill</span><span class="o">.</span><span class="n">set_value</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="s1">&#39;AD2HOSP&#39;</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.0</span><span class="p">)</span>
+        <span class="c1"># Q39: Type of Labour or Delivery Admission (Hospital)  </span>
+        <span class="k">if</span> <span class="n">pd</span><span class="o">.</span><span class="n">isnull</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s2">&quot;ADTYPE&quot;</span><span class="p">]):</span>
+            <span class="n">x_fill</span><span class="o">.</span><span class="n">set_value</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="s1">&#39;ADTYPE&#39;</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.0</span><span class="p">)</span>
+        <span class="c1"># Q44: Presenting Part  </span>
+        <span class="k">if</span> <span class="n">pd</span><span class="o">.</span><span class="n">isnull</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s2">&quot;PRESENT&quot;</span><span class="p">]):</span>
+            <span class="n">x_fill</span><span class="o">.</span><span class="n">set_value</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="s1">&#39;PRESENT&#39;</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.0</span><span class="p">)</span>
+        <span class="c1"># Q49a: No drugs of this type  </span>
+        <span class="k">if</span> <span class="n">pd</span><span class="o">.</span><span class="n">isnull</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s2">&quot;LDRUG00&quot;</span><span class="p">]):</span>
+            <span class="n">x_fill</span><span class="o">.</span><span class="n">set_value</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="s1">&#39;LDRUG00&#39;</span><span class="p">,</span> <span class="o">-</span><span class="mf">2.0</span><span class="p">)</span>
+        <span class="c1"># Q49a: Chloral, Welldorm  </span>
+        <span class="k">if</span> <span class="n">pd</span><span class="o">.</span><span class="n">isnull</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s2">&quot;LDRUG01&quot;</span><span class="p">]):</span>
+            <span class="n">x_fill</span><span class="o">.</span><span class="n">set_value</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="s1">&#39;LDRUG01&#39;</span><span class="p">,</span> <span class="o">-</span><span class="mf">2.0</span><span class="p">)</span>
+        <span class="c1"># Q49a: Barbiturate   </span>
+        <span class="k">if</span> <span class="n">pd</span><span class="o">.</span><span class="n">isnull</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s2">&quot;LDRUG02&quot;</span><span class="p">]):</span>
+            <span class="n">x_fill</span><span class="o">.</span><span class="n">set_value</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="s1">&#39;LDRUG02&#39;</span><span class="p">,</span> <span class="o">-</span><span class="mf">2.0</span><span class="p">)</span>
+        <span class="c1"># Q49a: Heroin   </span>
+        <span class="k">if</span> <span class="n">pd</span><span class="o">.</span><span class="n">isnull</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s2">&quot;LDRUG03&quot;</span><span class="p">]):</span>
+            <span class="n">x_fill</span><span class="o">.</span><span class="n">set_value</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="s1">&#39;LDRUG03&#39;</span><span class="p">,</span> <span class="o">-</span><span class="mf">2.0</span><span class="p">)</span>
+        <span class="c1"># Q49a: Largactil (chlorpomazine)   </span>
+        <span class="k">if</span> <span class="n">pd</span><span class="o">.</span><span class="n">isnull</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s2">&quot;LDRUG04&quot;</span><span class="p">]):</span>
+            <span class="n">x_fill</span><span class="o">.</span><span class="n">set_value</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="s1">&#39;LDRUG04&#39;</span><span class="p">,</span> <span class="o">-</span><span class="mf">2.0</span><span class="p">)</span>
+        <span class="c1"># Q49a: Sparine (promazine)    </span>
+        <span class="k">if</span> <span class="n">pd</span><span class="o">.</span><span class="n">isnull</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s2">&quot;LDRUG05&quot;</span><span class="p">]):</span>
+            <span class="n">x_fill</span><span class="o">.</span><span class="n">set_value</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="s1">&#39;LDRUG05&#39;</span><span class="p">,</span> <span class="o">-</span><span class="mf">2.0</span><span class="p">)</span>
+        <span class="c1"># Q49a: Phenergan (promethazine)    </span>
+        <span class="k">if</span> <span class="n">pd</span><span class="o">.</span><span class="n">isnull</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s2">&quot;LDRUG06&quot;</span><span class="p">]):</span>
+            <span class="n">x_fill</span><span class="o">.</span><span class="n">set_value</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="s1">&#39;LDRUG06&#39;</span><span class="p">,</span> <span class="o">-</span><span class="mf">2.0</span><span class="p">)</span>
+        <span class="c1"># Q49a: Doriden    </span>
+        <span class="k">if</span> <span class="n">pd</span><span class="o">.</span><span class="n">isnull</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s2">&quot;LDRUG07&quot;</span><span class="p">]):</span>
+            <span class="n">x_fill</span><span class="o">.</span><span class="n">set_value</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="s1">&#39;LDRUG07&#39;</span><span class="p">,</span> <span class="o">-</span><span class="mf">2.0</span><span class="p">)</span>
+        <span class="c1"># Q49a: Oblivon    </span>
+        <span class="k">if</span> <span class="n">pd</span><span class="o">.</span><span class="n">isnull</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s2">&quot;LDRUG08&quot;</span><span class="p">]):</span>
+            <span class="n">x_fill</span><span class="o">.</span><span class="n">set_value</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="s1">&#39;LDRUG08&#39;</span><span class="p">,</span> <span class="o">-</span><span class="mf">2.0</span><span class="p">)</span>
+        <span class="c1"># Q49a: Other    </span>
+        <span class="k">if</span> <span class="n">pd</span><span class="o">.</span><span class="n">isnull</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s2">&quot;LDRUG09&quot;</span><span class="p">]):</span>
+            <span class="n">x_fill</span><span class="o">.</span><span class="n">set_value</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="s1">&#39;LDRUG09&#39;</span><span class="p">,</span> <span class="o">-</span><span class="mf">2.0</span><span class="p">)</span>
+        <span class="c1"># Q50: Anaesthetic    </span>
+        <span class="k">if</span> <span class="n">pd</span><span class="o">.</span><span class="n">isnull</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s2">&quot;ATHETIC&quot;</span><span class="p">]):</span>
+            <span class="n">x_fill</span><span class="o">.</span><span class="n">set_value</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="s1">&#39;ATHETIC&#39;</span><span class="p">,</span> <span class="o">-</span><span class="mf">2.0</span><span class="p">)</span>
+        <span class="c1"># Q55: Resuscitation    </span>
+        <span class="k">if</span> <span class="n">pd</span><span class="o">.</span><span class="n">isnull</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s2">&quot;RESUS&quot;</span><span class="p">]):</span>
+            <span class="n">x_fill</span><span class="o">.</span><span class="n">set_value</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="s1">&#39;RESUS&#39;</span><span class="p">,</span> <span class="o">-</span><span class="mf">2.0</span><span class="p">)</span>
+        <span class="c1"># Q56: Drugs to baby (None)      </span>
+        <span class="k">if</span> <span class="n">pd</span><span class="o">.</span><span class="n">isnull</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s2">&quot;DTB1&quot;</span><span class="p">]):</span>
+            <span class="n">x_fill</span><span class="o">.</span><span class="n">set_value</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="s1">&#39;DTB1&#39;</span><span class="p">,</span> <span class="o">-</span><span class="mf">2.0</span><span class="p">)</span>
+        <span class="c1"># Q56: Drugs to baby (Coranine)       </span>
+        <span class="k">if</span> <span class="n">pd</span><span class="o">.</span><span class="n">isnull</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s2">&quot;DTB2&quot;</span><span class="p">]):</span>
+            <span class="n">x_fill</span><span class="o">.</span><span class="n">set_value</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="s1">&#39;DTB2&#39;</span><span class="p">,</span> <span class="o">-</span><span class="mf">2.0</span><span class="p">)</span>
+        <span class="c1"># Q56: Drugs to baby (Lobeline)       </span>
+        <span class="k">if</span> <span class="n">pd</span><span class="o">.</span><span class="n">isnull</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s2">&quot;DTB3&quot;</span><span class="p">]):</span>
+            <span class="n">x_fill</span><span class="o">.</span><span class="n">set_value</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="s1">&#39;DTB3&#39;</span><span class="p">,</span> <span class="o">-</span><span class="mf">2.0</span><span class="p">)</span>
+        <span class="c1"># Q56: Drugs to baby (Sedatives)       </span>
+        <span class="k">if</span> <span class="n">pd</span><span class="o">.</span><span class="n">isnull</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s2">&quot;DTB4&quot;</span><span class="p">]):</span>
+            <span class="n">x_fill</span><span class="o">.</span><span class="n">set_value</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="s1">&#39;DTB4&#39;</span><span class="p">,</span> <span class="o">-</span><span class="mf">2.0</span><span class="p">)</span>
+        <span class="c1"># Q56: Drugs to baby (Antagonists, nalorphine, levalorfan)       </span>
+        <span class="k">if</span> <span class="n">pd</span><span class="o">.</span><span class="n">isnull</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s2">&quot;DTB5&quot;</span><span class="p">]):</span>
+            <span class="n">x_fill</span><span class="o">.</span><span class="n">set_value</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="s1">&#39;DTB5&#39;</span><span class="p">,</span> <span class="o">-</span><span class="mf">2.0</span><span class="p">)</span>
+        <span class="c1"># Q56: Drugs to baby (Synkavit, Vikastab)      </span>
+        <span class="k">if</span> <span class="n">pd</span><span class="o">.</span><span class="n">isnull</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s2">&quot;DTB6&quot;</span><span class="p">]):</span>
+            <span class="n">x_fill</span><span class="o">.</span><span class="n">set_value</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="s1">&#39;DTB6&#39;</span><span class="p">,</span> <span class="o">-</span><span class="mf">2.0</span><span class="p">)</span>
+        <span class="c1"># Q56: Drugs to baby (Sulphonamides)      </span>
+        <span class="k">if</span> <span class="n">pd</span><span class="o">.</span><span class="n">isnull</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s2">&quot;DTB7&quot;</span><span class="p">]):</span>
+            <span class="n">x_fill</span><span class="o">.</span><span class="n">set_value</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="s1">&#39;DTB7&#39;</span><span class="p">,</span> <span class="o">-</span><span class="mf">2.0</span><span class="p">)</span>
+        <span class="c1"># Q56: Drugs to baby (Penicilin)      </span>
+        <span class="k">if</span> <span class="n">pd</span><span class="o">.</span><span class="n">isnull</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s2">&quot;DTB8&quot;</span><span class="p">]):</span>
+            <span class="n">x_fill</span><span class="o">.</span><span class="n">set_value</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="s1">&#39;DTB8&#39;</span><span class="p">,</span> <span class="o">-</span><span class="mf">2.0</span><span class="p">)</span>
+        <span class="c1"># Q56: Drugs to baby (Streptomycin)       </span>
+        <span class="k">if</span> <span class="n">pd</span><span class="o">.</span><span class="n">isnull</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s2">&quot;DTB9&quot;</span><span class="p">]):</span>
+            <span class="n">x_fill</span><span class="o">.</span><span class="n">set_value</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="s1">&#39;DTB9&#39;</span><span class="p">,</span> <span class="o">-</span><span class="mf">2.0</span><span class="p">)</span>
+        <span class="c1"># Q56: Drugs to baby (Other antibiotics)       </span>
+        <span class="k">if</span> <span class="n">pd</span><span class="o">.</span><span class="n">isnull</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s2">&quot;DTB10&quot;</span><span class="p">]):</span>
+            <span class="n">x_fill</span><span class="o">.</span><span class="n">set_value</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="s1">&#39;DTB10&#39;</span><span class="p">,</span> <span class="o">-</span><span class="mf">2.0</span><span class="p">)</span>
+        <span class="c1"># Q59: Baby&#39;s Illness       </span>
+        <span class="k">if</span> <span class="n">pd</span><span class="o">.</span><span class="n">isnull</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s2">&quot;ILLNESS&quot;</span><span class="p">]):</span>
+            <span class="n">x_fill</span><span class="o">.</span><span class="n">set_value</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="s1">&#39;ILLNESS&#39;</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.0</span><span class="p">)</span>
+        <span class="c1"># Q61: Month of Death       </span>
+        <span class="k">if</span> <span class="n">pd</span><span class="o">.</span><span class="n">isnull</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s2">&quot;MOD&quot;</span><span class="p">]):</span>
+            <span class="n">x_fill</span><span class="o">.</span><span class="n">set_value</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="s1">&#39;MOD&#39;</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">)</span>
+        <span class="c1"># Q61: Time of death        </span>
+        <span class="k">if</span> <span class="n">pd</span><span class="o">.</span><span class="n">isnull</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s2">&quot;TOD&quot;</span><span class="p">]):</span>
+            <span class="n">x_fill</span><span class="o">.</span><span class="n">set_value</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="s1">&#39;TOD&#39;</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.0</span><span class="p">)</span>
+        <span class="c1"># Q61: Age at Death        </span>
+        <span class="k">if</span> <span class="n">pd</span><span class="o">.</span><span class="n">isnull</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s2">&quot;AAD&quot;</span><span class="p">]):</span>
+            <span class="n">x_fill</span><span class="o">.</span><span class="n">set_value</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="s1">&#39;AAD&#39;</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.0</span><span class="p">)</span>
+        <span class="c1"># Q61: Still Birth or Neo-natal Death (Dervied)         </span>
+        <span class="k">if</span> <span class="n">pd</span><span class="o">.</span><span class="n">isnull</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s2">&quot;SBNND&quot;</span><span class="p">]):</span>
+            <span class="n">x_fill</span><span class="o">.</span><span class="n">set_value</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="s1">&#39;SBNND&#39;</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.0</span><span class="p">)</span>
+        <span class="c1"># Placental Weight         </span>
+        <span class="k">if</span> <span class="n">pd</span><span class="o">.</span><span class="n">isnull</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s2">&quot;PLCWGT&quot;</span><span class="p">]):</span>
+            <span class="n">x_fill</span><span class="o">.</span><span class="n">set_value</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="s1">&#39;PLCWGT&#39;</span><span class="p">,</span> <span class="o">-</span><span class="mf">2.0</span><span class="p">)</span>
+        <span class="c1"># Time of death for still births and neonatal deaths (Table 62)          </span>
+        <span class="k">if</span> <span class="n">pd</span><span class="o">.</span><span class="n">isnull</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s2">&quot;TABLE62&quot;</span><span class="p">]):</span>
+            <span class="n">x_fill</span><span class="o">.</span><span class="n">set_value</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="s1">&#39;TABLE62&#39;</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.0</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">x_fill</span>
+
+<span class="c1"># Impute missing data from joined columns using default values</span>
+<span class="n">ncds_data_clean</span> <span class="o">=</span> <span class="n">fill_pms_columns</span><span class="p">(</span><span class="n">ncds_data_clean</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The columns which help us determine if the patient has epilepsy or not we need to make sure while imputing them to set the values to a default value that does not refect epilepsy</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="c1">### method to fill nulls in the dataset</span>
+<span class="k">def</span> <span class="nf">fill_epilepsy_columns</span><span class="p">(</span><span class="n">x_fill</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">x_fill</span><span class="o">.</span><span class="n">iterrows</span><span class="p">():</span>
+        <span class="c1"># Q6:Place of Delivery  </span>
+        <span class="k">if</span> <span class="n">pd</span><span class="o">.</span><span class="n">isnull</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s2">&quot;n2032&quot;</span><span class="p">]):</span>
+            <span class="n">x_fill</span><span class="o">.</span><span class="n">set_value</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="s1">&#39;n2032&#39;</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.0</span><span class="p">)</span>
+
+<span class="c1"># Impute missing data for epilepsy columns</span>
+<span class="n">ncds_data_clean</span> <span class="o">=</span> <span class="n">fill_epilepsy_columns</span><span class="p">(</span><span class="n">ncds_data_clean</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>For the remaining columns for which we have nulls, let us use an algorithim to impute the values</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[20]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># find the columns without nulls</span>
+<span class="n">columns_no_nulls</span> <span class="o">=</span> <span class="n">find_columns_without_nulls</span><span class="p">(</span><span class="n">ncds_data_clean</span><span class="p">)</span>
+<span class="c1">#print columns_no_null</span>
+
+<span class="c1"># Find columns with nulls</span>
+<span class="n">columns_with_nulls</span> <span class="o">=</span> <span class="n">find_columns_with_nulls</span><span class="p">(</span><span class="n">ncds_data_clean</span><span class="p">)</span>
+
+<span class="c1"># Impute missing data with knn</span>
+<span class="k">for</span> <span class="n">column</span> <span class="ow">in</span> <span class="n">columns_with_nulls</span><span class="p">:</span>
+    <span class="n">ncds_data_clean</span> <span class="o">=</span> <span class="n">fill_with_knn</span><span class="p">(</span><span class="n">ncds_data_clean</span><span class="p">,</span><span class="mi">15</span><span class="p">,</span><span class="n">columns_no_nulls</span><span class="p">,</span><span class="n">column</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Let us check if we have imputed all the empty columns</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[25]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># Get the columns which have still null data</span>
+<span class="n">columns_with_null</span><span class="p">(</span><span class="n">ncds_data_clean</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Predictor  n339  contain null values / Count =  3134
+Predictor  n149  contain null values / Count =  3139
+Predictor  n1860  contain null values / Count =  3133
+Predictor  n2411  contain null values / Count =  3905
+Predictor  n2414  contain null values / Count =  3905
+Predictor  n1732  contain null values / Count =  3905
+Predictor  n1733  contain null values / Count =  3905
+Predictor  n1953  contain null values / Count =  3905
+Predictor  n2060  contain null values / Count =  3905
+Predictor  n2062  contain null values / Count =  3905
+Predictor  n2064  contain null values / Count =  3905
+Predictor  n2066  contain null values / Count =  3905
+Predictor  n2068  contain null values / Count =  3905
+Predictor  n2070  contain null values / Count =  3905
+Predictor  n2072  contain null values / Count =  3905
+Predictor  n2074  contain null values / Count =  3905
+Predictor  n2076  contain null values / Count =  3905
+Predictor  n2078  contain null values / Count =  3905
+Predictor  n2080  contain null values / Count =  3905
+Predictor  n2082  contain null values / Count =  3905
+Predictor  n2292  contain null values / Count =  3905
+Predictor  n1721  contain null values / Count =  3905
+Predictor  n1722  contain null values / Count =  3905
+Predictor  n2771  contain null values / Count =  3905
+Predictor  n2774  contain null values / Count =  3905
+Predictor  dvht07  contain null values / Count =  1
+Predictor  dvht11  contain null values / Count =  1
+Predictor  dvht16  contain null values / Count =  1
+Predictor  dvrwt07  contain null values / Count =  1
+Predictor  dvrwt11  contain null values / Count =  1
+Predictor  dvrwt16  contain null values / Count =  1
+Predictor  dvwt07  contain null values / Count =  1
+Predictor  dvwt11  contain null values / Count =  1
+Predictor  dvwt16  contain null values / Count =  1
+Total number of columns with null: 34
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>We can see that we still have columns with null values even after trying to impute with knn. So for the remaining columns we can impute with median values for the columns</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[26]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># Impute missing data with median values</span>
+<span class="n">ncds_data_clean</span> <span class="o">=</span> <span class="n">fill_with_median</span><span class="p">(</span><span class="n">ncds_data_clean</span><span class="p">)</span>
+
+<span class="c1"># Get the columns which have still null data</span>
+<span class="n">columns_with_null</span><span class="p">(</span><span class="n">ncds_data_clean</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Total number of columns with null: 0
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>We finally have a dataset that is filled with data and has no null values</p>
+
+</div>
+</div>
+</div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
 </div>
@@ -766,6 +1287,170 @@
 
 </div>
 </div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[30]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># Columns the help us identify if the patient has epilepsy</span>
+<span class="n">epil_columns</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;n390&quot;</span><span class="p">,</span><span class="s2">&quot;n391&quot;</span><span class="p">,</span><span class="s2">&quot;n392&quot;</span><span class="p">,</span><span class="s2">&quot;n415&quot;</span><span class="p">,</span> <span class="s2">&quot;n1842&quot;</span><span class="p">,</span> <span class="s2">&quot;n1307&quot;</span><span class="p">,</span> <span class="s2">&quot;n1308&quot;</span><span class="p">,</span> <span class="s2">&quot;n1309&quot;</span><span class="p">,</span> <span class="s2">&quot;n1314&quot;</span><span class="p">,</span> <span class="s2">&quot;n1317&quot;</span><span class="p">,</span> <span class="s2">&quot;n1477&quot;</span><span class="p">,</span> <span class="s2">&quot;n1478&quot;</span><span class="p">,</span> <span class="s2">&quot;n1479&quot;</span><span class="p">,</span> <span class="s2">&quot;n2416&quot;</span><span class="p">,</span> <span class="s2">&quot;n2663&quot;</span><span class="p">,</span> <span class="s2">&quot;n2664&quot;</span><span class="p">,</span> <span class="s2">&quot;n2665&quot;</span>
+                <span class="p">,</span> <span class="s2">&quot;n2666&quot;</span><span class="p">,</span> <span class="s2">&quot;n2667&quot;</span><span class="p">,</span> <span class="s2">&quot;n1893&quot;</span><span class="p">,</span> <span class="s2">&quot;n1894&quot;</span><span class="p">,</span> <span class="s2">&quot;n1895&quot;</span><span class="p">,</span> <span class="s2">&quot;n1904&quot;</span><span class="p">,</span> <span class="s2">&quot;n1910&quot;</span><span class="p">,</span> <span class="s1">&#39;n1817&#39;</span><span class="p">,</span> <span class="s1">&#39;n1818&#39;</span><span class="p">,</span>  <span class="s1">&#39;n1394&#39;</span><span class="p">,</span> <span class="s1">&#39;n1502&#39;</span><span class="p">,</span> <span class="s1">&#39;n2615&#39;</span><span class="p">,</span> <span class="s1">&#39;n2616&#39;</span><span class="p">]</span>
+
+<span class="c1"># Identify if patient has epilepsy</span>
+<span class="n">ncds_data_clean</span><span class="p">[</span><span class="s2">&quot;epileptic&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">ncds_data_clean</span><span class="o">.</span><span class="n">iterrows</span><span class="p">():</span>
+    <span class="c1"># 1M Reason for Special Education MC1:3</span>
+    <span class="k">if</span> <span class="n">row</span><span class="p">[</span><span class="s2">&quot;n390&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="mf">10.0</span><span class="p">:</span>
+        <span class="n">ncds_data_clean</span><span class="o">.</span><span class="n">set_value</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="s1">&#39;epileptic&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="c1"># 1M Reason for Special Education MC2:3</span>
+    <span class="k">if</span> <span class="n">row</span><span class="p">[</span><span class="s2">&quot;n391&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="mf">10.0</span><span class="p">:</span>
+        <span class="n">ncds_data_clean</span><span class="o">.</span><span class="n">set_value</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="s1">&#39;epileptic&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="c1"># 1M Reason for Special Education MC2:3</span>
+    <span class="k">if</span> <span class="n">row</span><span class="p">[</span><span class="s2">&quot;n392&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="mf">10.0</span><span class="p">:</span>
+        <span class="n">ncds_data_clean</span><span class="o">.</span><span class="n">set_value</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="s1">&#39;epileptic&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="c1"># 1M Epileptic condition</span>
+    <span class="k">if</span> <span class="n">row</span><span class="p">[</span><span class="s2">&quot;n415&quot;</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="mf">3.0</span> <span class="p">:</span>
+        <span class="n">ncds_data_clean</span><span class="o">.</span><span class="n">set_value</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="s1">&#39;epileptic&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="c1"># 12D Epilepsy identification</span>
+    <span class="k">if</span> <span class="n">row</span><span class="p">[</span><span class="s2">&quot;n1842&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="mf">5.0</span> <span class="p">:</span>
+        <span class="n">ncds_data_clean</span><span class="o">.</span><span class="n">set_value</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="s1">&#39;epileptic&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="c1"># 2P Has child had epilepsy attacks-MC 1:3</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s2">&quot;n1307&quot;</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="mf">1.0</span> <span class="ow">and</span> <span class="n">row</span><span class="p">[</span><span class="s2">&quot;n1307&quot;</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="mf">5.0</span><span class="p">):</span>
+        <span class="n">ncds_data_clean</span><span class="o">.</span><span class="n">set_value</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="s1">&#39;epileptic&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="c1"># 2P Has child had epilepsy attacks-MC 2:3</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s2">&quot;n1308&quot;</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="mf">1.0</span> <span class="ow">and</span> <span class="n">row</span><span class="p">[</span><span class="s2">&quot;n1308&quot;</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="mf">5.0</span><span class="p">):</span>
+        <span class="n">ncds_data_clean</span><span class="o">.</span><span class="n">set_value</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="s1">&#39;epileptic&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="c1"># 2P Has child had epilepsy attacks-MC 3:3</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s2">&quot;n1309&quot;</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="mf">1.0</span> <span class="ow">and</span> <span class="n">row</span><span class="p">[</span><span class="s2">&quot;n1309&quot;</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="mf">5.0</span><span class="p">):</span>
+        <span class="n">ncds_data_clean</span><span class="o">.</span><span class="n">set_value</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="s1">&#39;epileptic&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="c1"># 2P Age at most recent epilepsy attack</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s2">&quot;n1314&quot;</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="mf">0.0</span><span class="p">):</span>
+        <span class="n">ncds_data_clean</span><span class="o">.</span><span class="n">set_value</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="s1">&#39;epileptic&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="c1"># 2P Age at 1st epilepsy attack</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s2">&quot;n1317&quot;</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="mf">0.0</span><span class="p">):</span>
+        <span class="n">ncds_data_clean</span><span class="o">.</span><span class="n">set_value</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="s1">&#39;epileptic&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="c1"># 2M Reason for special education - MC1:3</span>
+    <span class="k">if</span> <span class="n">row</span><span class="p">[</span><span class="s2">&quot;n1477&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="mf">7.0</span><span class="p">:</span>
+        <span class="n">ncds_data_clean</span><span class="o">.</span><span class="n">set_value</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="s1">&#39;epileptic&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="c1"># 2M Reason for special education - MC2:3</span>
+    <span class="k">if</span> <span class="n">row</span><span class="p">[</span><span class="s2">&quot;n1478&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="mf">7.0</span><span class="p">:</span>
+        <span class="n">ncds_data_clean</span><span class="o">.</span><span class="n">set_value</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="s1">&#39;epileptic&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="c1"># 2M Reason for special education - MC3:3</span>
+    <span class="k">if</span> <span class="n">row</span><span class="p">[</span><span class="s2">&quot;n1479&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="mf">7.0</span><span class="p">:</span>
+        <span class="n">ncds_data_clean</span><span class="o">.</span><span class="n">set_value</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="s1">&#39;epileptic&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="c1"># 3P Type hcap for which will require help</span>
+    <span class="k">if</span> <span class="n">row</span><span class="p">[</span><span class="s2">&quot;n2416&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="mf">7.0</span><span class="p">:</span>
+        <span class="n">ncds_data_clean</span><span class="o">.</span><span class="n">set_value</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="s1">&#39;epileptic&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="c1"># 3P Nature of child-s disability-MC 1:5</span>
+    <span class="k">if</span> <span class="n">row</span><span class="p">[</span><span class="s2">&quot;n2663&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="mf">7.0</span><span class="p">:</span>
+        <span class="n">ncds_data_clean</span><span class="o">.</span><span class="n">set_value</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="s1">&#39;epileptic&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="c1"># 3P Nature of child-s disability-MC 2:5</span>
+    <span class="k">if</span> <span class="n">row</span><span class="p">[</span><span class="s2">&quot;n2664&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="mf">7.0</span><span class="p">:</span>
+        <span class="n">ncds_data_clean</span><span class="o">.</span><span class="n">set_value</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="s1">&#39;epileptic&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="c1"># 3P Nature of child-s disability-MC 3:5</span>
+    <span class="k">if</span> <span class="n">row</span><span class="p">[</span><span class="s2">&quot;n2665&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="mf">7.0</span><span class="p">:</span>
+        <span class="n">ncds_data_clean</span><span class="o">.</span><span class="n">set_value</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="s1">&#39;epileptic&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="c1"># 3P Nature of child-s disability-MC 4:5</span>
+    <span class="k">if</span> <span class="n">row</span><span class="p">[</span><span class="s2">&quot;n2666&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="mf">7.0</span><span class="p">:</span>
+        <span class="n">ncds_data_clean</span><span class="o">.</span><span class="n">set_value</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="s1">&#39;epileptic&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="c1"># 3P Nature of child-s disability-MC 5:5</span>
+    <span class="k">if</span> <span class="n">row</span><span class="p">[</span><span class="s2">&quot;n2667&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="mf">7.0</span><span class="p">:</span>
+        <span class="n">ncds_data_clean</span><span class="o">.</span><span class="n">set_value</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="s1">&#39;epileptic&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="c1"># 3M Category of child&#39;s handicap MC1:3</span>
+    <span class="k">if</span> <span class="n">row</span><span class="p">[</span><span class="s2">&quot;n1893&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="mf">8.0</span><span class="p">:</span>
+        <span class="n">ncds_data_clean</span><span class="o">.</span><span class="n">set_value</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="s1">&#39;epileptic&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="c1"># 3M Category of child&#39;s handicap MC2:3</span>
+    <span class="k">if</span> <span class="n">row</span><span class="p">[</span><span class="s2">&quot;n1894&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="mf">8.0</span><span class="p">:</span>
+        <span class="n">ncds_data_clean</span><span class="o">.</span><span class="n">set_value</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="s1">&#39;epileptic&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="c1"># 3M Category of child&#39;s handicap MC3:3</span>
+    <span class="k">if</span> <span class="n">row</span><span class="p">[</span><span class="s2">&quot;n1895&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="mf">8.0</span><span class="p">:</span>
+        <span class="n">ncds_data_clean</span><span class="o">.</span><span class="n">set_value</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="s1">&#39;epileptic&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="c1"># 3M Reason for hosp admiss last 12 mnths</span>
+    <span class="k">if</span> <span class="n">row</span><span class="p">[</span><span class="s2">&quot;n1904&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="mf">17.0</span><span class="p">:</span>
+        <span class="n">ncds_data_clean</span><span class="o">.</span><span class="n">set_value</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="s1">&#39;epileptic&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="c1"># 3M Reason hosp outpatient last yr</span>
+    <span class="k">if</span> <span class="n">row</span><span class="p">[</span><span class="s2">&quot;n1910&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="mf">17.0</span><span class="p">:</span>
+        <span class="n">ncds_data_clean</span><span class="o">.</span><span class="n">set_value</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="s1">&#39;epileptic&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="c1"># 3M Epilepsy</span>
+    <span class="k">if</span> <span class="n">row</span><span class="p">[</span><span class="s2">&quot;n2032&quot;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mf">1.0</span><span class="p">:</span>
+        <span class="n">ncds_data_clean</span><span class="o">.</span><span class="n">set_value</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="s1">&#39;epileptic&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+    
+    <span class="c1"># New columns </span>
+    
+    <span class="c1"># 1D Defects found in NCDS1 sample-MC 1:4</span>
+    <span class="k">if</span> <span class="n">row</span><span class="p">[</span><span class="s2">&quot;n1817&quot;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mf">0.0</span><span class="p">:</span>
+        <span class="n">ncds_data_clean</span><span class="o">.</span><span class="n">set_value</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="s1">&#39;epileptic&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="c1"># 1D Defects found in NCDS1 sample-MC 2:4</span>
+    <span class="k">if</span> <span class="n">row</span><span class="p">[</span><span class="s2">&quot;n1818&quot;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mf">0.0</span><span class="p">:</span>
+        <span class="n">ncds_data_clean</span><span class="o">.</span><span class="n">set_value</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="s1">&#39;epileptic&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="c1"># 1D Defects found in NCDS1 sample-MC 3:4</span>
+    <span class="k">if</span> <span class="n">row</span><span class="p">[</span><span class="s2">&quot;n1819&quot;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mf">0.0</span><span class="p">:</span>
+        <span class="n">ncds_data_clean</span><span class="o">.</span><span class="n">set_value</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="s1">&#39;epileptic&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="c1"># 2P Ever seen specialist-convulsions,fits</span>
+    <span class="k">if</span> <span class="n">row</span><span class="p">[</span><span class="s2">&quot;n1394&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="mf">5.0</span><span class="p">:</span>
+        <span class="n">ncds_data_clean</span><span class="o">.</span><span class="n">set_value</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="s1">&#39;epileptic&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="c1"># 2M Has child ever had convulsions</span>
+    <span class="k">if</span> <span class="nb">any</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s2">&quot;n1502&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="n">s</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="p">[</span><span class="mf">2.0</span><span class="p">,</span><span class="mf">3.0</span><span class="p">,</span><span class="mf">4.0</span><span class="p">]):</span>
+        <span class="n">ncds_data_clean</span><span class="o">.</span><span class="n">set_value</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="s1">&#39;epileptic&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="c1"># 3P When convulsions,fits 1st occured</span>
+    <span class="k">if</span> <span class="nb">any</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s2">&quot;n2615&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="n">s</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="p">[</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">2.0</span><span class="p">,</span><span class="mf">3.0</span><span class="p">,</span><span class="mf">4.0</span><span class="p">,</span><span class="mf">5.0</span><span class="p">,</span><span class="mf">6.0</span><span class="p">]):</span>
+        <span class="n">ncds_data_clean</span><span class="o">.</span><span class="n">set_value</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="s1">&#39;epileptic&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="c1"># 3P Convulsions-most recent occurrence</span>
+    <span class="k">if</span> <span class="nb">any</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s2">&quot;n2616&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="n">s</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="p">[</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">2.0</span><span class="p">,</span><span class="mf">3.0</span><span class="p">,</span><span class="mf">4.0</span><span class="p">,</span><span class="mf">5.0</span><span class="p">,</span><span class="mf">6.0</span><span class="p">,</span><span class="mf">7.0</span><span class="p">]):</span>
+        <span class="n">ncds_data_clean</span><span class="o">.</span><span class="n">set_value</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="s1">&#39;epileptic&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+        
+<span class="k">print</span> <span class="s2">&quot;Number of rows with epilepsy&quot;</span><span class="p">,</span><span class="n">ncds_data_clean</span><span class="p">[</span><span class="n">ncds_data_clean</span><span class="p">[</span><span class="s2">&quot;epileptic&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Number of rows with epilepsy 1710
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[31]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># Remove the epilepsy columns from the data</span>
+<span class="n">ncds_data_no_indicators</span><span class="o">=</span><span class="n">ncds_data_clean</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">ncds_data_no_indicators</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">epil_columns</span><span class="p">,</span><span class="n">inplace</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="k">print</span> <span class="s2">&quot;Shape of dataset: &quot;</span> <span class="p">,</span> <span class="n">ncds_data_no_indicators</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Shape of dataset:  (18558, 1803)
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
@@ -777,12 +1462,30 @@
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[34]:</div>
 <div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="c1">### Write the dataframe to a csv file</span>
+<span class="n">ncds_data_no_indicators</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;datasets/ncds_data_no_indicators.csv&#39;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;,&#39;</span><span class="p">,</span><span class="n">index</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+</pre></div>
 
 </div>
 </div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span> 
+</pre></div>
+
+</div>
+</div>
+</div>
+
 </div>
