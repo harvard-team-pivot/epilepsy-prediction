@@ -181,9 +181,13 @@ nav.sidebar, .main{
     }
 }
 
-nav.sidebar .navbar-nav .open .dropdown-menu>li>a:hover, nav.sidebar .navbar-nav .open .dropdown-menu>li>a:focus {
+nav.sidebar .navbar-nav .open, nav.sidebar .navbar-nav .open .dropdown-menu>li>a:focus {
     color: #ffffff;
-    background-color: #0c1931;
+    /*background-color: #0c1931;*/
+}
+.dropdown-menu>li>a:hover{
+    color: #ffffff;
+    background-color: #cecece;
 }
 
 nav:hover .forAnimate{
@@ -199,21 +203,26 @@ section{
 }
 
 .navbar-nav .nondropdown:hover{
-    background-color: #0c1931;
+    background-color: #cecece;
     cursor: pointer;
     cursor: hand;
 }
 
 .dropdown-menu > li:hover{
-    background-color: #0c1931;
+    background-color: #cecece;
     cursor: pointer;
     cursor: hand;
 }
 
-.dropdown-menu>.active>a, .dropdown-menu>.active>a:focus, .dropdown-menu>.active>a:hover {
+.dropdown-menu>.active>a, .dropdown-menu>.active>a:focus {
 
     background-color: #0c1931;
 
+}
+.dropdown-menu>.active>a:hover{
+    background-color: #cecece;
+    cursor: pointer;
+    cursor: hand;
 }
 
 header {
@@ -264,8 +273,8 @@ header {
     height: 500px;
 }
 
-#body{
-    min-height: 500px;
+.main .container{
+    min-height: 400px;
 }
 
 .page-header{
