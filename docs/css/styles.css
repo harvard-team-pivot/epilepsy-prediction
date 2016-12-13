@@ -291,3 +291,9 @@ header {
     font-family: "Open Sans", sans-serif;
     font-weight: normal;
 }
+
+.output-scroll{
+    height: auto;
+    max-height: 300px;
+    overflow: auto;
+}

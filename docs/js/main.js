@@ -101,12 +101,19 @@ function openpage(li,id,scroll){
                     // if (id == 0 || el.text() == 'hide_me') {
                     //     $(this).hide();
                     // }
-                    console.log(id);
+                    //console.log(id);
                     el = $(this).find('.c1:first');
                     if(el && el.text() == '###Hide'){
                         $(this).hide();
                     }
 
+                });
+                $('div.output_wrapper').each(function(id) {
+                    pre = $(this).find('pre:first');
+                    if(pre && pre.text().startsWith('###Scroll')){
+                        //console.log(pre)
+                        $(this).addClass('output-scroll');
+                    }
                 });
             }
         });
