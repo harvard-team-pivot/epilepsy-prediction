@@ -47,7 +47,7 @@ $(function() {
 var current_page_index = 0;
 var sidebar_items = [
     {"id":"01","page":"components/01-overview.html","name":"Overview"}
-    ,{"id":"05","page":"components/05-Objectives.html","name":"Objectives"}
+    ,{"id":"05","page":"components/05-objectives.html","name":"Objectives"}
     ,{"id":"10","page":"components/10-data.html","name":"Data"}
     ,{"id":"20","page":"components/20-explore.html","name":"Explore"}
     ,{"id":"21","page":"ipynb/20_exploratory_data_analysis_01.html","name":"Data Source 1"}
