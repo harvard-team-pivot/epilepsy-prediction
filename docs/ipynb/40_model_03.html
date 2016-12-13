@@ -1,7 +1,7 @@
 
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[43]:</div>
+<div class="prompt input_prompt">In&nbsp;[1]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1">###Hide</span>
@@ -49,7 +49,7 @@
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[47]:</div>
+<div class="prompt input_prompt">In&nbsp;[2]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># Load the models</span>
@@ -68,7 +68,7 @@
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[48]:</div>
+<div class="prompt input_prompt">In&nbsp;[19]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1">### Utility methods</span>
@@ -108,6 +108,16 @@
     <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Predicted label&#39;</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">img</span>
 
+<span class="k">def</span> <span class="nf">find_top_features</span><span class="p">(</span><span class="n">model</span><span class="p">,</span><span class="n">n</span><span class="p">):</span>
+    <span class="c1"># Get the feature importances</span>
+    <span class="n">feature_importances</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">ncds_data_no_indicators</span><span class="o">.</span><span class="n">columns</span><span class="p">,</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;feature&#39;</span><span class="p">])</span>
+    <span class="n">feature_importances</span> <span class="o">=</span> <span class="n">feature_importances</span><span class="p">[</span><span class="n">feature_importances</span><span class="p">[</span><span class="s1">&#39;feature&#39;</span><span class="p">]</span> <span class="o">!=</span> <span class="s1">&#39;epileptic&#39;</span><span class="p">]</span>
+
+    <span class="n">feature_importances</span><span class="p">[</span><span class="s1">&#39;importance&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">feature_importances_</span>
+    <span class="n">feature_importances</span> <span class="o">=</span> <span class="n">feature_importances</span><span class="o">.</span><span class="n">sort_values</span><span class="p">([</span><span class="s1">&#39;importance&#39;</span><span class="p">],</span> <span class="n">ascending</span><span class="o">=</span><span class="p">[</span><span class="bp">False</span><span class="p">])</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+    
+    <span class="k">return</span> <span class="n">feature_importances</span>
+
 <span class="c1"># Function for computing the accuracy a given model on the entire test set,</span>
 <span class="c1"># the accuracy on class 0 in the test set</span>
 <span class="c1"># and the accuracy on class 1</span>
@@ -124,7 +134,7 @@
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[49]:</div>
+<div class="prompt input_prompt">In&nbsp;[4]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># Prepare data for model evaluation</span>
@@ -395,6 +405,108 @@ accuracy on class 1    0.637155
 dtype: float64
 </pre>
 </div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h5 id="Find-the-most-importance-features-for-this-model">Find the most importance features for this model<a class="anchor-link" href="#Find-the-most-importance-features-for-this-model">&#182;</a></h5>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[20]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># Find top 10 features</span>
+<span class="n">top_features</span> <span class="o">=</span> <span class="n">find_top_features</span><span class="p">(</span><span class="n">best_overall</span><span class="p">,</span><span class="mi">10</span><span class="p">)</span>
+
+<span class="n">top_features</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[20]:</div>
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>feature</th>
+      <th>importance</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1175</th>
+      <td>n2614</td>
+      <td>0.038719</td>
+    </tr>
+    <tr>
+      <th>196</th>
+      <td>n275</td>
+      <td>0.038202</td>
+    </tr>
+    <tr>
+      <th>1325</th>
+      <td>n2032</td>
+      <td>0.028302</td>
+    </tr>
+    <tr>
+      <th>195</th>
+      <td>n274</td>
+      <td>0.027948</td>
+    </tr>
+    <tr>
+      <th>329</th>
+      <td>n412</td>
+      <td>0.027122</td>
+    </tr>
+    <tr>
+      <th>1792</th>
+      <td>OUTCME01</td>
+      <td>0.019769</td>
+    </tr>
+    <tr>
+      <th>283</th>
+      <td>n354</td>
+      <td>0.017962</td>
+    </tr>
+    <tr>
+      <th>571</th>
+      <td>n1400</td>
+      <td>0.014493</td>
+    </tr>
+    <tr>
+      <th>1326</th>
+      <td>n2033</td>
+      <td>0.013847</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>n2region</td>
+      <td>0.013218</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
 </div>
 
 </div>
@@ -677,6 +789,108 @@ dtype: float64
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
+<h5 id="Find-the-most-importance-features-for-this-model">Find the most importance features for this model<a class="anchor-link" href="#Find-the-most-importance-features-for-this-model">&#182;</a></h5>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[21]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># Find top 10 features</span>
+<span class="n">top_features</span> <span class="o">=</span> <span class="n">find_top_features</span><span class="p">(</span><span class="n">best_class0</span><span class="p">,</span><span class="mi">10</span><span class="p">)</span>
+
+<span class="n">top_features</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[21]:</div>
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>feature</th>
+      <th>importance</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1175</th>
+      <td>n2614</td>
+      <td>0.039365</td>
+    </tr>
+    <tr>
+      <th>196</th>
+      <td>n275</td>
+      <td>0.033522</td>
+    </tr>
+    <tr>
+      <th>283</th>
+      <td>n354</td>
+      <td>0.022786</td>
+    </tr>
+    <tr>
+      <th>1792</th>
+      <td>OUTCME01</td>
+      <td>0.020781</td>
+    </tr>
+    <tr>
+      <th>1793</th>
+      <td>OUTCME02</td>
+      <td>0.019669</td>
+    </tr>
+    <tr>
+      <th>195</th>
+      <td>n274</td>
+      <td>0.017247</td>
+    </tr>
+    <tr>
+      <th>571</th>
+      <td>n1400</td>
+      <td>0.016847</td>
+    </tr>
+    <tr>
+      <th>1303</th>
+      <td>n2008</td>
+      <td>0.015768</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>n1region</td>
+      <td>0.015062</td>
+    </tr>
+    <tr>
+      <th>1794</th>
+      <td>OUTCME03</td>
+      <td>0.013978</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <h4 id="Step-4.3:-Best-Class-1-Performance">Step 4.3: Best Class 1 Performance<a class="anchor-link" href="#Step-4.3:-Best-Class-1-Performance">&#182;</a></h4><p>Model that performs well on class 1 predictions</p>
 
 </div>
@@ -924,6 +1138,108 @@ accuracy on class 1    0.719884
 dtype: float64
 </pre>
 </div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h5 id="Find-the-most-importance-features-for-this-model">Find the most importance features for this model<a class="anchor-link" href="#Find-the-most-importance-features-for-this-model">&#182;</a></h5>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[22]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># Find top 10 features</span>
+<span class="n">top_features</span> <span class="o">=</span> <span class="n">find_top_features</span><span class="p">(</span><span class="n">best_class1</span><span class="p">,</span><span class="mi">10</span><span class="p">)</span>
+
+<span class="n">top_features</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[22]:</div>
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>feature</th>
+      <th>importance</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1175</th>
+      <td>n2614</td>
+      <td>0.045283</td>
+    </tr>
+    <tr>
+      <th>196</th>
+      <td>n275</td>
+      <td>0.032288</td>
+    </tr>
+    <tr>
+      <th>1792</th>
+      <td>OUTCME01</td>
+      <td>0.021451</td>
+    </tr>
+    <tr>
+      <th>283</th>
+      <td>n354</td>
+      <td>0.020584</td>
+    </tr>
+    <tr>
+      <th>1159</th>
+      <td>n2598</td>
+      <td>0.019780</td>
+    </tr>
+    <tr>
+      <th>1793</th>
+      <td>OUTCME02</td>
+      <td>0.019386</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>n1region</td>
+      <td>0.019220</td>
+    </tr>
+    <tr>
+      <th>195</th>
+      <td>n274</td>
+      <td>0.018008</td>
+    </tr>
+    <tr>
+      <th>1794</th>
+      <td>OUTCME03</td>
+      <td>0.016403</td>
+    </tr>
+    <tr>
+      <th>52</th>
+      <td>n514</td>
+      <td>0.015545</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
 </div>
 
 </div>
