@@ -297,3 +297,28 @@ header {
     max-height: 300px;
     overflow: auto;
 }
+.ipython-link{
+    position: absolute;
+    top: 20px;
+    right: 50px;
+}
+
+#headernote1{
+    position: absolute;
+    top: 300px;
+    left: 50px;
+    font-family: "Open Sans", sans-serif;
+    font-weight: normal;
+    font-size: 12pt;
+    color: #cecece;
+}
+
+#headernote2{
+    position: absolute;
+    top: 50px;
+    right: 50px;
+    font-family: "Open Sans", sans-serif;
+    font-weight: normal;
+    font-size: 12pt;
+    color: #cecece;
+}

@@ -115,6 +115,10 @@ function openpage(li,id,scroll){
                         $(this).addClass('output-scroll');
                     }
                 });
+
+                // Add a link to the ipython notebook
+                notebook = item.page.replace(".html", ".ipynb");
+                $('#body').append('<a class="btn ipython-link" target="_blank" href="https://github.com/harvard-team-pivot/epilepsy-prediction/blob/master/docs/'+notebook+'">View Jupyter Notebook</a>');
             }
         });
         current_page_index = _.findIndex(sidebar_items, function(o) { return o.id == id; });
