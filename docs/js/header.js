@@ -70,7 +70,7 @@ function createheadervis(){
                 createelectricsignals(all_greennodes,"#4E9443");
             }
 
-        }, 3000);
+        }, 2000);
 
         function createelectricsignals(all_nodes,baseColor){
             all_nodes.transition()
@@ -107,9 +107,9 @@ function createheadervis(){
 
         // Header notes
         setTimeout(function () {
-            headernote1.style('opacity',0).transition().delay(250).duration(1500).style('opacity',1);
-            headernote2.style('opacity',0).transition().delay(5000).duration(1500).style('opacity',1);
-        }, 3000);
+            headernote1.style('opacity',0).transition().delay(250).duration(1200).style('opacity',1);
+            headernote2.style('opacity',0).transition().delay(2000).duration(1200).style('opacity',1);
+        }, 800);
     });
 }
 
