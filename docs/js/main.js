@@ -154,6 +154,9 @@ function nextpage(){
 }
 
 function setprevnexttext(){
+    $('#previous_button').removeClass("hidden");
+    $('#next_button').removeClass("hidden");
+
     if(current_page_index == 0){
         $('#previous_button').addClass("hidden");
     }else{
