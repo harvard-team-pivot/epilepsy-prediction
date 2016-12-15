@@ -304,6 +304,16 @@ Test class 0: 6735, test class 1: 689
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
+<p>From the results above we can see that our data is imbalanced. So we would need to consider to subsample, oversample, re-weight sample points, use clustering to reduce majority class, or re calibrate classifier output.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <h4 id="Step-1.3:-Feature-Selection">Step 1.3: Feature Selection<a class="anchor-link" href="#Step-1.3:-Feature-Selection">&#182;</a></h4><p>From the merged datasets we can see we have over 1800 features. Going through the 1800 would be a very time consuming task so let us apply some algorithims to find the best features that we can use to build the model. In our exploration phase we did use PCA to find a subset of components but chose not to use those components in our base models. The exploration phase can be seen <a href="20_exploratory_data_analysis_02.ipynb">here</a>. However we may chose to use PCA during model tuning and evaluating model performance phase.</p>
 
 </div>

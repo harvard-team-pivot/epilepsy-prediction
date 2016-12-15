@@ -757,6 +757,39 @@
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h5 id="Data-Analysis-/-Exploration">Data Analysis / Exploration<a class="anchor-link" href="#Data-Analysis-/-Exploration">&#182;</a></h5><p>Most of our exploration was done in the data exploration step of our project. The details of the tasks we performed can be viewed <a href="20_exploratory_data_analysis_02.ipynb">here</a>.</p>
+<p>The columns that helped us decide if the patient had epilepsy or not were:</p>
+<ul>
+<li><strong>n390</strong>    , Reason for Special Education MC1:3</li>
+<li><strong>n391</strong>    , Reason for Special Education MC2:3</li>
+<li><strong>n392</strong>    , Reason for Special Education MC3:3</li>
+<li><strong>n415</strong>    , Epileptic condition</li>
+<li><strong>n1842</strong> , Epilepsy identification</li>
+<li><strong>n1307</strong> , Has child had epilepsy attacks-MC 1:3</li>
+<li><strong>n1308</strong> , Has child had epilepsy attacks-MC 2:3</li>
+<li><strong>n1309</strong> , Has child had epilepsy attacks-MC 3:3</li>
+<li><strong>n1314</strong> , Age at most recent epilepsy attack</li>
+<li><strong>n1317</strong> , Age at 1st epilepsy attack</li>
+<li><strong>n1477</strong> , Reason for special education - MC1:3</li>
+<li><strong>n1478</strong> , Reason for special education - MC2:3</li>
+<li><strong>n1479</strong> , Reason for special education - MC3:3</li>
+<li><strong>n2416</strong> , Type hcap for which will require help</li>
+<li><strong>n2663</strong> , Nature of child-s disability-MC 1:5</li>
+<li><strong>n2664</strong> , Nature of child-s disability-MC 2:5</li>
+<li><strong>n2665</strong> , Nature of child-s disability-MC 3:5</li>
+<li><strong>n2666</strong> , Nature of child-s disability-MC 4:5</li>
+<li><strong>n2667</strong> , Nature of child-s disability-MC 5:5</li>
+<li><strong>n1893</strong> , Category of child's handicap MC1:3</li>
+<li><strong>n1894</strong> , Category of child's handicap MC2:3</li>
+<li><strong>n1895</strong> , Category of child's handicap MC3:3</li>
+<li><strong>n1904</strong> , Reason for hosp admiss last 12 mnths</li>
+<li><strong>n1910</strong> , Reason hosp outpatient last yr</li>
+<li><strong>n1817</strong> , Defects found in NCDS1 sample-MC 1:4</li>
+<li><strong>n1818</strong> , Defects found in NCDS1 sample-MC 2:4</li>
+<li><strong>n1394</strong> , Ever seen specialist-convulsions,fits</li>
+<li><strong>n1502</strong> , Has child ever had convulsions</li>
+<li><strong>n2615</strong> , When convulsions,fits 1st occured</li>
+<li><strong>n2616</strong> , Convulsions-most recent occurrence</li>
+</ul>
 
 </div>
 </div>
@@ -1113,6 +1146,66 @@
         <span class="c1"># Q6:Place of Delivery  </span>
         <span class="k">if</span> <span class="n">pd</span><span class="o">.</span><span class="n">isnull</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s2">&quot;n2032&quot;</span><span class="p">]):</span>
             <span class="n">x_fill</span><span class="o">.</span><span class="n">set_value</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="s1">&#39;n2032&#39;</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.0</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">pd</span><span class="o">.</span><span class="n">isnull</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s2">&quot;n390&quot;</span><span class="p">]):</span>
+            <span class="n">x_fill</span><span class="o">.</span><span class="n">set_value</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="s1">&#39;n390&#39;</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.0</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">pd</span><span class="o">.</span><span class="n">isnull</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s2">&quot;n391&quot;</span><span class="p">]):</span>
+            <span class="n">x_fill</span><span class="o">.</span><span class="n">set_value</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="s1">&#39;n391&#39;</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.0</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">pd</span><span class="o">.</span><span class="n">isnull</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s2">&quot;n392&quot;</span><span class="p">]):</span>
+            <span class="n">x_fill</span><span class="o">.</span><span class="n">set_value</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="s1">&#39;n392&#39;</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.0</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">pd</span><span class="o">.</span><span class="n">isnull</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s2">&quot;n415&quot;</span><span class="p">]):</span>
+            <span class="n">x_fill</span><span class="o">.</span><span class="n">set_value</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="s1">&#39;n415&#39;</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.0</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">pd</span><span class="o">.</span><span class="n">isnull</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s2">&quot;n1842&quot;</span><span class="p">]):</span>
+            <span class="n">x_fill</span><span class="o">.</span><span class="n">set_value</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="s1">&#39;n1842&#39;</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.0</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">pd</span><span class="o">.</span><span class="n">isnull</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s2">&quot;n1307&quot;</span><span class="p">]):</span>
+            <span class="n">x_fill</span><span class="o">.</span><span class="n">set_value</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="s1">&#39;n1307&#39;</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.0</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">pd</span><span class="o">.</span><span class="n">isnull</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s2">&quot;n1308&quot;</span><span class="p">]):</span>
+            <span class="n">x_fill</span><span class="o">.</span><span class="n">set_value</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="s1">&#39;n1308&#39;</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.0</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">pd</span><span class="o">.</span><span class="n">isnull</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s2">&quot;n1309&quot;</span><span class="p">]):</span>
+            <span class="n">x_fill</span><span class="o">.</span><span class="n">set_value</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="s1">&#39;n1309&#39;</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.0</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">pd</span><span class="o">.</span><span class="n">isnull</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s2">&quot;n1314&quot;</span><span class="p">]):</span>
+            <span class="n">x_fill</span><span class="o">.</span><span class="n">set_value</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="s1">&#39;n1314&#39;</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.0</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">pd</span><span class="o">.</span><span class="n">isnull</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s2">&quot;n1317&quot;</span><span class="p">]):</span>
+            <span class="n">x_fill</span><span class="o">.</span><span class="n">set_value</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="s1">&#39;n1317&#39;</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.0</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">pd</span><span class="o">.</span><span class="n">isnull</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s2">&quot;n1477&quot;</span><span class="p">]):</span>
+            <span class="n">x_fill</span><span class="o">.</span><span class="n">set_value</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="s1">&#39;n1477&#39;</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.0</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">pd</span><span class="o">.</span><span class="n">isnull</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s2">&quot;n1478&quot;</span><span class="p">]):</span>
+            <span class="n">x_fill</span><span class="o">.</span><span class="n">set_value</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="s1">&#39;n1478&#39;</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.0</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">pd</span><span class="o">.</span><span class="n">isnull</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s2">&quot;n1479&quot;</span><span class="p">]):</span>
+            <span class="n">x_fill</span><span class="o">.</span><span class="n">set_value</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="s1">&#39;n1479&#39;</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.0</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">pd</span><span class="o">.</span><span class="n">isnull</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s2">&quot;n2416&quot;</span><span class="p">]):</span>
+            <span class="n">x_fill</span><span class="o">.</span><span class="n">set_value</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="s1">&#39;n2416&#39;</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.0</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">pd</span><span class="o">.</span><span class="n">isnull</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s2">&quot;n2663&quot;</span><span class="p">]):</span>
+            <span class="n">x_fill</span><span class="o">.</span><span class="n">set_value</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="s1">&#39;n2663&#39;</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.0</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">pd</span><span class="o">.</span><span class="n">isnull</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s2">&quot;n2664&quot;</span><span class="p">]):</span>
+            <span class="n">x_fill</span><span class="o">.</span><span class="n">set_value</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="s1">&#39;n2664&#39;</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.0</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">pd</span><span class="o">.</span><span class="n">isnull</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s2">&quot;n2665&quot;</span><span class="p">]):</span>
+            <span class="n">x_fill</span><span class="o">.</span><span class="n">set_value</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="s1">&#39;n2665&#39;</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.0</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">pd</span><span class="o">.</span><span class="n">isnull</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s2">&quot;n2666&quot;</span><span class="p">]):</span>
+            <span class="n">x_fill</span><span class="o">.</span><span class="n">set_value</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="s1">&#39;n2666&#39;</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.0</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">pd</span><span class="o">.</span><span class="n">isnull</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s2">&quot;n2667&quot;</span><span class="p">]):</span>
+            <span class="n">x_fill</span><span class="o">.</span><span class="n">set_value</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="s1">&#39;n2667&#39;</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.0</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">pd</span><span class="o">.</span><span class="n">isnull</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s2">&quot;n1893&quot;</span><span class="p">]):</span>
+            <span class="n">x_fill</span><span class="o">.</span><span class="n">set_value</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="s1">&#39;n1893&#39;</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.0</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">pd</span><span class="o">.</span><span class="n">isnull</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s2">&quot;n1894&quot;</span><span class="p">]):</span>
+            <span class="n">x_fill</span><span class="o">.</span><span class="n">set_value</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="s1">&#39;n1894&#39;</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.0</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">pd</span><span class="o">.</span><span class="n">isnull</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s2">&quot;n1895&quot;</span><span class="p">]):</span>
+            <span class="n">x_fill</span><span class="o">.</span><span class="n">set_value</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="s1">&#39;n1895&#39;</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.0</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">pd</span><span class="o">.</span><span class="n">isnull</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s2">&quot;n1904&quot;</span><span class="p">]):</span>
+            <span class="n">x_fill</span><span class="o">.</span><span class="n">set_value</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="s1">&#39;n1904&#39;</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.0</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">pd</span><span class="o">.</span><span class="n">isnull</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s2">&quot;n1910&quot;</span><span class="p">]):</span>
+            <span class="n">x_fill</span><span class="o">.</span><span class="n">set_value</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="s1">&#39;n1910&#39;</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.0</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">pd</span><span class="o">.</span><span class="n">isnull</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s2">&quot;n1817&quot;</span><span class="p">]):</span>
+            <span class="n">x_fill</span><span class="o">.</span><span class="n">set_value</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="s1">&#39;n1817&#39;</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.0</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">pd</span><span class="o">.</span><span class="n">isnull</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s2">&quot;n1818&quot;</span><span class="p">]):</span>
+            <span class="n">x_fill</span><span class="o">.</span><span class="n">set_value</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="s1">&#39;n1818&#39;</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.0</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">pd</span><span class="o">.</span><span class="n">isnull</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s2">&quot;n1394&quot;</span><span class="p">]):</span>
+            <span class="n">x_fill</span><span class="o">.</span><span class="n">set_value</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="s1">&#39;n1394&#39;</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.0</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">pd</span><span class="o">.</span><span class="n">isnull</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s2">&quot;n1502&quot;</span><span class="p">]):</span>
+            <span class="n">x_fill</span><span class="o">.</span><span class="n">set_value</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="s1">&#39;n1502&#39;</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.0</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">pd</span><span class="o">.</span><span class="n">isnull</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s2">&quot;n2615&quot;</span><span class="p">]):</span>
+            <span class="n">x_fill</span><span class="o">.</span><span class="n">set_value</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="s1">&#39;n2615&#39;</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.0</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">pd</span><span class="o">.</span><span class="n">isnull</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s2">&quot;n2616&quot;</span><span class="p">]):</span>
+            <span class="n">x_fill</span><span class="o">.</span><span class="n">set_value</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="s1">&#39;n2616&#39;</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.0</span><span class="p">)</span>
 
 <span class="c1"># Impute missing data for epilepsy columns</span>
 <span class="n">ncds_data_clean</span> <span class="o">=</span> <span class="n">fill_epilepsy_columns</span><span class="p">(</span><span class="n">ncds_data_clean</span><span class="p">)</span>
@@ -1128,7 +1221,7 @@
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>For the remaining columns for which we have nulls, let us use an algorithim to impute the values</p>
+<p>For the remaining columns for which we have nulls, let us use an algorithim to impute the values. In our explorotory phase we had used the median and mean to impute data. But here we will be using a more sophisticated method like KNN</p>
 
 </div>
 </div>
